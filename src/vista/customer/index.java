@@ -143,7 +143,7 @@ public class index extends javax.swing.JFrame {
 
         jPanel5.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, -1, -1));
 
-        options.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(407, 4, 53, -1));
+        options.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(407, 1, 53, 50));
 
         navBar.add(options, new org.netbeans.lib.awtextra.AbsoluteConstraints(812, 11, -1, -1));
 
