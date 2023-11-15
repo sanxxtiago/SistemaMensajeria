@@ -6,15 +6,14 @@ package modelo;
 
 /**
  *
- * @author Santiago
+ * @author dsola
  */
-public class Cliente {
-    //Todos los atributos de cada entidad
+public class Deliver {
     private String nombre;
     private String id;
     private String email;
     
-    public Cliente(String nombre, String id, String email){
+    public Deliver(String nombre, String id, String email){
         this.nombre = nombre;
         this.id = id;
         this.email = email;

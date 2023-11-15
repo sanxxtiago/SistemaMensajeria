@@ -4,17 +4,25 @@
  */
 package vista.customer;
 
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import vista.customer.services.servicesList;
+
 /**
  *
  * @author dsola
  */
 public class index extends javax.swing.JFrame {
 
-    /**
-     * Creates new form inedx
-     */
+    JPanel p = new JPanel();
+    JFrame f = new JFrame();
+    
     public index() {
         initComponents();
+        this.p.setVisible(false);
+        this.f = new servicesList();
+        this.p.add(f);
+        this.p.setVisible(true);
     }
 
     /**
