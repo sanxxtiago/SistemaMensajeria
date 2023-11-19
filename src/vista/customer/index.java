@@ -114,7 +114,7 @@ public class index extends javax.swing.JFrame {
         jPanel7.setVerifyInputWhenFocusTarget(false);
         jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/customer/user-icon.png"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/customer/menu/user-icon.png"))); // NOI18N
         jLabel4.setMaximumSize(new java.awt.Dimension(38, 38));
         jLabel4.setMinimumSize(new java.awt.Dimension(38, 38));
         jLabel4.setPreferredSize(new java.awt.Dimension(38, 38));
@@ -143,7 +143,7 @@ public class index extends javax.swing.JFrame {
         jPanel4.setVerifyInputWhenFocusTarget(false);
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/customer/bag-icon.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/customer/menu/bag-icon.png"))); // NOI18N
         jLabel2.setMaximumSize(new java.awt.Dimension(38, 38));
         jLabel2.setMinimumSize(new java.awt.Dimension(38, 38));
         jLabel2.setPreferredSize(new java.awt.Dimension(38, 38));

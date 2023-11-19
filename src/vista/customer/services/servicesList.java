@@ -27,27 +27,37 @@ public class servicesList extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        serviceListContainer = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1440, 950));
         setSize(new java.awt.Dimension(1440, 950));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(153, 51, 0));
-        jPanel1.setPreferredSize(new java.awt.Dimension(1040, 950));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setPreferredSize(new java.awt.Dimension(1440, 950));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1040, Short.MAX_VALUE)
+        jLabel1.setFont(new java.awt.Font("Lucida Sans Unicode", 1, 26)); // NOI18N
+        jLabel1.setText("Mis solicitudes");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(97, 81, -1, -1));
+
+        serviceListContainer.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout serviceListContainerLayout = new javax.swing.GroupLayout(serviceListContainer);
+        serviceListContainer.setLayout(serviceListContainerLayout);
+        serviceListContainerLayout.setHorizontalGroup(
+            serviceListContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 850, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 950, Short.MAX_VALUE)
+        serviceListContainerLayout.setVerticalGroup(
+            serviceListContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 480, Short.MAX_VALUE)
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1040, 950));
+        jPanel1.add(serviceListContainer, new org.netbeans.lib.awtextra.AbsoluteConstraints(97, 147, 850, 480));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1440, 950));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -88,6 +98,8 @@ public class servicesList extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel serviceListContainer;
     // End of variables declaration//GEN-END:variables
 }
