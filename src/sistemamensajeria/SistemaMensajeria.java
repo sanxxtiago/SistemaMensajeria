@@ -27,6 +27,12 @@ public class SistemaMensajeria {
         //Establece la conexión con la bd alojada en la nube
         Conexion.getSingleton().establecerConexion();
         
+        try {
+            System.out.println(Conexion.getSingleton().connection.isClosed());
+        } catch (SQLException ex) {
+            Logger.getLogger(SistemaMensajeria.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
     
     
