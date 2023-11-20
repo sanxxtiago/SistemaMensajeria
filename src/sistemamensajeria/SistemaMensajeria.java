@@ -28,6 +28,7 @@ public class SistemaMensajeria {
         Conexion.getSingleton().establecerConexion();
         
         try {
+            //Si bota false la conexión está activa
             System.out.println(Conexion.getSingleton().connection.isClosed());
         } catch (SQLException ex) {
             Logger.getLogger(SistemaMensajeria.class.getName()).log(Level.SEVERE, null, ex);
