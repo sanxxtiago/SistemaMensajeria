@@ -9,7 +9,7 @@ package modelo;
  * @author Santiago
  */
 public class Cliente { //Clase donde se guardan los atributos del cliente.
-    private String tipoID;
+    private String tipoID;//Cambiar esto a un char
     private int idCliente;
     private String nombre;
     private String apellido;
