@@ -4,6 +4,14 @@
  */
 package vista;
 
+import dao.MensajeroDAO;
+import java.text.SimpleDateFormat;
+import java.sql.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import modelo.Mensajero;
+import util.RHException;
+
 /**
  *
  * @author Santiago
@@ -40,21 +48,23 @@ public class RegistroMensajero extends javax.swing.JFrame {
         contrasenaInput = new javax.swing.JTextField();
         correoLabel = new javax.swing.JLabel();
         contrasenaLabel = new javax.swing.JLabel();
-        disponibilidadLabel = new javax.swing.JLabel();
+        tipoTransporteLabel = new javax.swing.JLabel();
         telefonoLabel = new javax.swing.JLabel();
         cancelarButton = new javax.swing.JButton();
         crearCuentaButton = new javax.swing.JButton();
         apellidosLabel = new javax.swing.JLabel();
         apellidosInput = new javax.swing.JTextField();
         sexoComboBox = new javax.swing.JComboBox<>();
-        numeroDocInput1 = new javax.swing.JTextField();
+        numeroDocInput = new javax.swing.JTextField();
         fNacimientoLabel = new javax.swing.JLabel();
         nacionalidadLabel = new javax.swing.JLabel();
         nacionalidadInput = new javax.swing.JTextField();
         sexoLabel = new javax.swing.JLabel();
-        tipoDocumentoComboBox = new javax.swing.JComboBox<>();
-        confirmarLabel1 = new javax.swing.JLabel();
+        tipoTransporteComboBox = new javax.swing.JComboBox<>();
+        confirmarLabel = new javax.swing.JLabel();
         confirmarInput = new javax.swing.JTextField();
+        disponibilidadLabel1 = new javax.swing.JLabel();
+        tipoDocumentoComboBox = new javax.swing.JComboBox<>();
         container = new javax.swing.JLabel();
         backdround = new javax.swing.JLabel();
 
@@ -102,9 +112,9 @@ public class RegistroMensajero extends javax.swing.JFrame {
         contrasenaLabel.setText("Contraseña");
         getContentPane().add(contrasenaLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 250, -1, -1));
 
-        disponibilidadLabel.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        disponibilidadLabel.setText("Disponibilidad horaria");
-        getContentPane().add(disponibilidadLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 350, -1, -1));
+        tipoTransporteLabel.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        tipoTransporteLabel.setText("Tipo de trasporte");
+        getContentPane().add(tipoTransporteLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 400, -1, -1));
 
         telefonoLabel.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         telefonoLabel.setText("Teléfono");
@@ -114,21 +124,26 @@ public class RegistroMensajero extends javax.swing.JFrame {
         cancelarButton.setForeground(new java.awt.Color(255, 255, 255));
         cancelarButton.setText("Cancelar");
         cancelarButton.setActionCommand("Crear cuenta");
-        getContentPane().add(cancelarButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 420, 90, -1));
+        getContentPane().add(cancelarButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 460, 90, -1));
 
         crearCuentaButton.setBackground(new java.awt.Color(51, 102, 255));
         crearCuentaButton.setForeground(new java.awt.Color(255, 255, 255));
         crearCuentaButton.setText("Crear cuenta");
-        getContentPane().add(crearCuentaButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 420, 100, -1));
+        crearCuentaButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                crearCuentaButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(crearCuentaButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 460, 100, -1));
 
         apellidosLabel.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         apellidosLabel.setText("Apellidos");
         getContentPane().add(apellidosLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 150, -1, -1));
         getContentPane().add(apellidosInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 170, 196, -1));
 
-        sexoComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hombre", "Mujer", "Otro", " " }));
+        sexoComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "H", "M", "O" }));
         getContentPane().add(sexoComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 120, 196, -1));
-        getContentPane().add(numeroDocInput1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 270, 196, -1));
+        getContentPane().add(numeroDocInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 270, 196, -1));
 
         fNacimientoLabel.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         fNacimientoLabel.setText("Fecha de nacimiento");
@@ -143,27 +158,60 @@ public class RegistroMensajero extends javax.swing.JFrame {
         sexoLabel.setText("Sexo");
         getContentPane().add(sexoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 100, -1, -1));
 
-        tipoDocumentoComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cédula de ciudadanía", "Cédula de extranjería" }));
-        getContentPane().add(tipoDocumentoComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 220, 196, -1));
+        tipoTransporteComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "M", "B" }));
+        getContentPane().add(tipoTransporteComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 420, 196, -1));
 
-        confirmarLabel1.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        confirmarLabel1.setText("Confirmar contraseña");
-        getContentPane().add(confirmarLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 300, -1, -1));
+        confirmarLabel.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        confirmarLabel.setText("Confirmar contraseña");
+        getContentPane().add(confirmarLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 300, -1, -1));
         getContentPane().add(confirmarInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 320, 196, -1));
+
+        disponibilidadLabel1.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        disponibilidadLabel1.setText("Disponibilidad horaria");
+        getContentPane().add(disponibilidadLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 350, -1, -1));
+
+        tipoDocumentoComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CC", "CE", "TI" }));
+        getContentPane().add(tipoDocumentoComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 220, 196, -1));
 
         container.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/img/panel.png"))); // NOI18N
         container.setMaximumSize(new java.awt.Dimension(464, 412));
         container.setMinimumSize(new java.awt.Dimension(464, 412));
         container.setOpaque(true);
-        getContentPane().add(container, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 40, 464, 430));
+        getContentPane().add(container, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 40, 464, 460));
 
         backdround.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/img/background_1.png"))); // NOI18N
         backdround.setToolTipText("");
-        getContentPane().add(backdround, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1148, 514));
+        getContentPane().add(backdround, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 720, 514));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void crearCuentaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearCuentaButtonActionPerformed
+        try {
+            Mensajero mensajero = new Mensajero();
+            
+            mensajero.setTipoId(tipoDocumentoComboBox.getSelectedItem().toString());
+            mensajero.setIdMensajero(Integer.parseInt(numeroDocInput.getText()));  
+            mensajero.setNombre(nombresInput.getText());
+            mensajero.setApellido(apellidosInput.getText());
+            mensajero.setTelefono(Integer.parseInt(telefonoInput.getText()));
+            mensajero.setF_nacimiento(fNacimientoInput.getText());
+            mensajero.setNacionalidad(nacionalidadInput.getText());
+            mensajero.setSexo(sexoComboBox.getSelectedItem().toString());
+            mensajero.setCorreo(correoInput.getText());
+            mensajero.setContrasena(contrasenaInput.getText());
+            mensajero.setMedioTransporte(tipoTransporteComboBox.getSelectedItem().toString());
+            mensajero.setCalificacionPromedio(0f);
+            
+            MensajeroDAO mensajeroDAO = new MensajeroDAO();
+            
+            mensajeroDAO.registroMensajero(mensajero);
+        } catch (RHException ex) {
+            Logger.getLogger(RegistroMensajero.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_crearCuentaButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -207,7 +255,7 @@ public class RegistroMensajero extends javax.swing.JFrame {
     private javax.swing.JLabel backdround;
     private javax.swing.JButton cancelarButton;
     private javax.swing.JTextField confirmarInput;
-    private javax.swing.JLabel confirmarLabel1;
+    private javax.swing.JLabel confirmarLabel;
     private javax.swing.JLabel container;
     private javax.swing.JTextField contrasenaInput;
     private javax.swing.JLabel contrasenaLabel;
@@ -215,14 +263,14 @@ public class RegistroMensajero extends javax.swing.JFrame {
     private javax.swing.JLabel correoLabel;
     private javax.swing.JButton crearCuentaButton;
     private javax.swing.JTextField disponibilidadInput;
-    private javax.swing.JLabel disponibilidadLabel;
+    private javax.swing.JLabel disponibilidadLabel1;
     private javax.swing.JTextField fNacimientoInput;
     private javax.swing.JLabel fNacimientoLabel;
     private javax.swing.JTextField nacionalidadInput;
     private javax.swing.JLabel nacionalidadLabel;
     private javax.swing.JTextField nombresInput;
     private javax.swing.JLabel nombresLabel;
-    private javax.swing.JTextField numeroDocInput1;
+    private javax.swing.JTextField numeroDocInput;
     private javax.swing.JLabel numeroDocLabel;
     private javax.swing.JLabel registroLabel;
     private javax.swing.JTextField seguridadInput;
@@ -233,5 +281,7 @@ public class RegistroMensajero extends javax.swing.JFrame {
     private javax.swing.JLabel telefonoLabel;
     private javax.swing.JLabel tipoDocLabel;
     private javax.swing.JComboBox<String> tipoDocumentoComboBox;
+    private javax.swing.JComboBox<String> tipoTransporteComboBox;
+    private javax.swing.JLabel tipoTransporteLabel;
     // End of variables declaration//GEN-END:variables
 }
