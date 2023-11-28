@@ -4,25 +4,38 @@
  */
 package vista.customer;
 
-import javax.swing.JFrame;
 import javax.swing.JPanel;
-import vista.customer.services.servicesList;
+import utils.Observer;
+import utils.Constants;
+import vista.customer.services.ServiceDetailsPanel;
+import vista.customer.services.ServicesListPanel;
 
 /**
  *
  * @author dsola
  */
-public class index extends javax.swing.JFrame {
-
-    JPanel p = new JPanel();
-    JFrame f = new JFrame();
+public final class Customer extends javax.swing.JFrame implements Observer {
     
-    public index() {
+    private static final Customer instance = new Customer();
+    private ServicesListPanel servicesList = new ServicesListPanel();
+    
+    public static  Customer getInstance() {
+        return instance;
+    }
+    
+    private Customer() {
         initComponents();
-        this.p.setVisible(false);
-        this.f = new servicesList();
-        this.p.add(f);
-        this.p.setVisible(true);
+        displayPanel(servicesList);
+    }
+    
+    public void displayPanel(JPanel panel) {
+        panel.setSize(Constants.getContentXSize(), Constants.getContentYSize());
+        panel.setLocation(0, 0);
+        
+        content.removeAll();
+        content.add(panel);
+        content.revalidate();
+        content.repaint();
     }
 
     /**
@@ -63,7 +76,6 @@ public class index extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1440, 1024));
 
         jPanel1.setPreferredSize(new java.awt.Dimension(1440, 1024));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -105,6 +117,11 @@ public class index extends javax.swing.JFrame {
         label3.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 18)); // NOI18N
         label3.setForeground(new java.awt.Color(52, 53, 61));
         label3.setText("Historial");
+        label3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                label3MousePressed(evt);
+            }
+        });
         options.add(label3, new org.netbeans.lib.awtextra.AbsoluteConstraints(317, 14, -1, 30));
 
         jPanel7.setBackground(new java.awt.Color(224, 227, 253));
@@ -187,6 +204,10 @@ public class index extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void label3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label3MousePressed
+        displayPanel(servicesList);
+    }//GEN-LAST:event_label3MousePressed
+
     /**
      * @param args the command line arguments
      */
@@ -204,23 +225,39 @@ public class index extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(index.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Customer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(index.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Customer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(index.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Customer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(index.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Customer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new index().setVisible(true);
+                new Customer().setVisible(true);
             }
         });
+    }
+
+    @Override
+    public void actualizar(String id) {
+        if(id.equals("0")){
+            displayPanel(servicesList);
+        } else {
+            ServiceDetailsPanel serviceDetailsPanel = new ServiceDetailsPanel(id);
+            displayPanel(serviceDetailsPanel);
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

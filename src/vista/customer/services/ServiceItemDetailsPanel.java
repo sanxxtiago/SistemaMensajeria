@@ -4,17 +4,41 @@
  */
 package vista.customer.services;
 
+import utils.Subject;
+
 /**
  *
  * @author dsola
  */
-public class serviceItemDetails extends javax.swing.JPanel {
+public class ServiceItemDetailsPanel extends javax.swing.JPanel {
+    
+    public Subject subject = new Subject();
 
+    private String serviceId;
+    private String serviceName;
+    private String servicePrice; 
+    private String serviceDuration;
+    private String serviceDeliver;
     /**
-     * Creates new form serviceItemDetails
+     * Creates new form serviceItemDetailsPanel
      */
-    public serviceItemDetails() {
+     
+    public void displayServiceData() {
+        serviceNameLabel.setText(this.serviceName);
+        servicePriceLabel.setText(this.servicePrice);
+        serviceDateLabel.setText(this.serviceDuration);
+        serviceDeliverLabel.setText(this.serviceDeliver);
+    }
+
+    public ServiceItemDetailsPanel(String serviceId, String serviceName, String servicePrice, String serviceDuration, String serviceDeliver) {
         initComponents();
+        this.serviceId = serviceId;
+        this.serviceName = serviceName;
+        this.servicePrice = servicePrice;
+        this.serviceDuration = serviceDuration;
+        this.serviceDeliver = serviceDeliver;
+        
+        displayServiceData();
     }
 
     /**
@@ -31,21 +55,18 @@ public class serviceItemDetails extends javax.swing.JPanel {
         imageContainer = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        serviceName = new java.awt.Label();
-        servicePrice = new javax.swing.JLabel();
+        serviceNameLabel = new java.awt.Label();
+        servicePriceLabel = new javax.swing.JLabel();
         serviceName1 = new java.awt.Label();
         serviceName2 = new java.awt.Label();
         serviceName3 = new java.awt.Label();
-        serviceDeliver = new javax.swing.JLabel();
-        serviceDate = new javax.swing.JLabel();
+        serviceDeliverLabel = new javax.swing.JLabel();
+        serviceDateLabel = new javax.swing.JLabel();
         detailsServiceButton = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         cancelServiceButton = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(255, 255, 255));
-        setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 20, 20, 20));
-        setPreferredSize(new java.awt.Dimension(400, 246));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -67,16 +88,16 @@ public class serviceItemDetails extends javax.swing.JPanel {
         jPanel3.setPreferredSize(new java.awt.Dimension(400, 76));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        serviceName.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        serviceName.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 16)); // NOI18N
-        serviceName.setForeground(new java.awt.Color(52, 53, 61));
-        serviceName.setText("Nombre servicio");
-        jPanel3.add(serviceName, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 10, -1, 20));
+        serviceNameLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        serviceNameLabel.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 16)); // NOI18N
+        serviceNameLabel.setForeground(new java.awt.Color(52, 53, 61));
+        serviceNameLabel.setText("Nombre servicio");
+        jPanel3.add(serviceNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 10, -1, 20));
 
-        servicePrice.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 14)); // NOI18N
-        servicePrice.setForeground(new java.awt.Color(141, 141, 141));
-        servicePrice.setText("$25.000");
-        jPanel3.add(servicePrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 36, -1, 20));
+        servicePriceLabel.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 14)); // NOI18N
+        servicePriceLabel.setForeground(new java.awt.Color(141, 141, 141));
+        servicePriceLabel.setText("$25.000");
+        jPanel3.add(servicePriceLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 36, -1, 20));
 
         serviceName1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         serviceName1.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 14)); // NOI18N
@@ -96,30 +117,48 @@ public class serviceItemDetails extends javax.swing.JPanel {
         serviceName3.setText("Duracion");
         jPanel3.add(serviceName3, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 62, -1, 20));
 
-        serviceDeliver.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 14)); // NOI18N
-        serviceDeliver.setForeground(new java.awt.Color(141, 141, 141));
-        serviceDeliver.setText("Pepito perez");
-        jPanel3.add(serviceDeliver, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 87, -1, 20));
+        serviceDeliverLabel.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 14)); // NOI18N
+        serviceDeliverLabel.setForeground(new java.awt.Color(141, 141, 141));
+        serviceDeliverLabel.setText("Pepito perez");
+        jPanel3.add(serviceDeliverLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 87, -1, 20));
 
-        serviceDate.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 14)); // NOI18N
-        serviceDate.setForeground(new java.awt.Color(141, 141, 141));
-        serviceDate.setText("1 hora y 24 minutos");
-        jPanel3.add(serviceDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 62, -1, 20));
+        serviceDateLabel.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 14)); // NOI18N
+        serviceDateLabel.setForeground(new java.awt.Color(141, 141, 141));
+        serviceDateLabel.setText("1 hora y 24 minutos");
+        jPanel3.add(serviceDateLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 62, -1, 20));
 
         detailsServiceButton.setBackground(new java.awt.Color(102, 119, 247));
         detailsServiceButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(8, 8, 8, 8));
+        detailsServiceButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        detailsServiceButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                detailsServiceButtonMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                detailsServiceButtonMousePressed(evt);
+            }
+        });
         detailsServiceButton.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/customer/services/alert-circle-outline.png"))); // NOI18N
         jLabel1.setText("Detalles");
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jLabel1MousePressed(evt);
+            }
+        });
         detailsServiceButton.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 8, -1, -1));
 
         jPanel3.add(detailsServiceButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 60, 88, 36));
 
         cancelServiceButton.setBackground(new java.awt.Color(242, 46, 62));
         cancelServiceButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(8, 8, 8, 8));
+        cancelServiceButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         cancelServiceButton.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 12)); // NOI18N
@@ -136,7 +175,9 @@ public class serviceItemDetails extends javax.swing.JPanel {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(imageContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 394, Short.MAX_VALUE)))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -154,6 +195,22 @@ public class serviceItemDetails extends javax.swing.JPanel {
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-1, 0, 400, 246));
     }// </editor-fold>//GEN-END:initComponents
 
+    private void detailsServiceButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_detailsServiceButtonMouseClicked
+        
+    }//GEN-LAST:event_detailsServiceButtonMouseClicked
+
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel1MouseClicked
+
+    private void detailsServiceButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_detailsServiceButtonMousePressed
+        this.subject.notificarObservadores(this.serviceId);
+    }//GEN-LAST:event_detailsServiceButtonMousePressed
+
+    private void jLabel1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MousePressed
+        this.subject.notificarObservadores(this.serviceId);
+    }//GEN-LAST:event_jLabel1MousePressed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel cancelServiceButton;
@@ -165,12 +222,12 @@ public class serviceItemDetails extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JLabel serviceDate;
-    private javax.swing.JLabel serviceDeliver;
-    private java.awt.Label serviceName;
+    private javax.swing.JLabel serviceDateLabel;
+    private javax.swing.JLabel serviceDeliverLabel;
     private java.awt.Label serviceName1;
     private java.awt.Label serviceName2;
     private java.awt.Label serviceName3;
-    private javax.swing.JLabel servicePrice;
+    private java.awt.Label serviceNameLabel;
+    private javax.swing.JLabel servicePriceLabel;
     // End of variables declaration//GEN-END:variables
 }

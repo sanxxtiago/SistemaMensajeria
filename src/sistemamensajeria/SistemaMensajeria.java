@@ -4,6 +4,9 @@
  */
 package sistemamensajeria;
 
+import vista.customer.Customer;
+import vista.customer.services.ServiceItemDetailsPanel;
+
 /**
  *
  * @author Santiago
@@ -14,7 +17,7 @@ public class SistemaMensajeria {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        Customer.getInstance();
     }
     
 }
