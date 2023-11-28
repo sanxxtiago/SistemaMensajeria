@@ -72,14 +72,11 @@ public class ClienteMain extends javax.swing.JFrame {
         serviciosContainer.setBackground(new java.awt.Color(204, 204, 204));
         serviciosContainer.setOpaque(true);
         getContentPane().add(serviciosContainer, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 120, 510, 320));
-
         container.setBackground(new java.awt.Color(255, 255, 255));
         container.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/img/panel.png"))); // NOI18N
         container.setMaximumSize(new java.awt.Dimension(464, 412));
         container.setMinimumSize(new java.awt.Dimension(464, 412));
         container.setOpaque(true);
-        getContentPane().add(container, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 720, 510));
-
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
