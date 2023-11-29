@@ -7,7 +7,7 @@ public class Mensajero {
     private int idMensajero;
     private String nombre;
     private String apellido;
-    private int telefono;
+    private long telefono;
     private String f_nacimiento;
     private String nacionalidad;
     private String sexo;
@@ -42,10 +42,10 @@ public class Mensajero {
     public void setApellido(String apellido) {
         this.apellido = apellido;
     }
-    public int getTelefono() {
+    public long getTelefono() {
         return telefono;
     }
-    public void setTelefono(int telefono) {
+    public void setTelefono(long telefono) {
         this.telefono = telefono;
     }
     public String getF_nacimiento() {

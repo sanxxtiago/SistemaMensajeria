@@ -11,24 +11,24 @@ import util.ServiceLocator;
 
 public class MensajeroDAO {
 
-    public MensajeroDAO(){
+    public MensajeroDAO() {
 
     }
 
-        public void registroMensajero(Mensajero mensajero) throws RHException{//Clase que maneja el acceso a la tabla clientes de la BD.
-        try{
-            String strSQL = "INSERT INTO public.mensajero(k_tipoid, k_idmensajero, n_nombre, n_apellido, q_telefono,"+
-            " f_nacimiento, n_nacionalidad, i_sexo, n_correo, n_contrasena, i_mediotransporte, q_calificacionpromedio)"+
-            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+    public void registroMensajero(Mensajero mensajero) throws RHException {//Clase que maneja el acceso a la tabla clientes de la BD.
+        try {
+            String strSQL = "INSERT INTO public.mensajero(k_tipoid, k_idmensajero, n_nombre, n_apellido, q_telefono,"
+                    + "f_nacimiento, n_nacionalidad, i_sexo, n_correo, n_contrasena, i_mediotransporte, q_calificacionpromedio)"
+                    + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
             Connection conexion = ServiceLocator.getInstance().tomarConexion();
             PreparedStatement prepStmt = conexion.prepareStatement(strSQL);
-            prepStmt.setString(1,mensajero.getTipoId()); 
-            prepStmt.setInt(2, mensajero.getIdMensajero()); 
-            prepStmt.setString(3, mensajero.getNombre()); 
-            prepStmt.setString(4, mensajero.getApellido()); 
-            prepStmt.setInt(5, mensajero.getTelefono());  
-            prepStmt.setDate(6, java.sql.Date.valueOf(mensajero.getF_nacimiento())); 
-            prepStmt.setString(7, mensajero.getNacionalidad());  
+            prepStmt.setString(1, mensajero.getTipoId());
+            prepStmt.setInt(2, mensajero.getIdMensajero());
+            prepStmt.setString(3, mensajero.getNombre());
+            prepStmt.setString(4, mensajero.getApellido());
+            prepStmt.setLong(5, mensajero.getTelefono());
+            prepStmt.setDate(6, java.sql.Date.valueOf(mensajero.getF_nacimiento()));
+            prepStmt.setString(7, mensajero.getNacionalidad());
             prepStmt.setString(8, mensajero.getSexo());
             prepStmt.setString(9, mensajero.getCorreo());
             prepStmt.setString(10, mensajero.getContrasena());
@@ -37,10 +37,10 @@ public class MensajeroDAO {
             prepStmt.executeUpdate();
             prepStmt.close();
             ServiceLocator.getInstance().commit();
-        }catch(SQLException e){
+        } catch (SQLException e) {
             ServiceLocator.getInstance().rollback();
-            throw new RHException( "MensajeroDAO", "No pudo crear el mensajero"+ e.getMessage());
-        }finally{
+            throw new RHException("MensajeroDAO", "No pudo crear el mensajero -> " + e.getMessage());
+        } finally {
             ServiceLocator.getInstance().liberarConexion();
         }
     }
@@ -48,7 +48,7 @@ public class MensajeroDAO {
     // Método para consultar un mensajero por su ID
     public Mensajero consultarMensajeroPorId(int idMensajero) throws RHException {
         Mensajero mensajero = null;
-
+        /* System.out.println("1.2.2"); */
         try {
             // Consulta SQL para seleccionar un mensajero por su ID
             String strSQL = "SELECT * FROM public.mensajero WHERE k_idmensajero = ?";
@@ -70,7 +70,7 @@ public class MensajeroDAO {
                 mensajero.setIdMensajero(rs.getInt("k_idmensajero"));
                 mensajero.setNombre(rs.getString("n_nombre"));
                 mensajero.setApellido(rs.getString("n_apellido"));
-                mensajero.setTelefono(rs.getInt("q_telefono"));
+                mensajero.setTelefono(rs.getLong("q_telefono"));
                 mensajero.setF_nacimiento(rs.getDate("f_nacimiento").toString());
                 mensajero.setNacionalidad(rs.getString("n_nacionalidad"));
                 mensajero.setSexo(rs.getString("i_sexo"));

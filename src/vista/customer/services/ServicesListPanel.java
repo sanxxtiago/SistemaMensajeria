@@ -4,6 +4,7 @@
  */
 package vista.customer.services;
 
+import java.util.ArrayList;
 import java.util.List;
 import modelo.Servicio;
 import negocio.Controlador;
@@ -46,13 +47,18 @@ public class ServicesListPanel extends javax.swing.JPanel {
             ServiceItemDetailsPanel servicesPanels[] = new ServiceItemDetailsPanel[services.size()];
         
             Customer indexClass = Customer.getInstance();
+            
 
-            for(var index = 0; index < services.size() ; index++) {
+            for(int index = 0; index < services.size() ; index++) {
+
                 int[] coords = getServicePanelCords(index);
                 
+                System.out.println(services.get(index).getIdServicio());
+
                 servicesPanels[index] = new ServiceItemDetailsPanel(services.get(index));
                 servicesPanels[index].setSize(Constants.getItemXSize(), Constants.getItemYSize());
                 servicesPanels[index].setLocation(coords[0], coords[1]);
+
                 serviceListContainer.add(servicesPanels[index]);
 
                 servicesPanels[index].subject.agregarObservador(indexClass);

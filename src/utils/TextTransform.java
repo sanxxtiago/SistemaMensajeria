@@ -15,13 +15,12 @@ import java.time.format.DateTimeFormatter;
  */
 public class TextTransform {
      public static String getTimeElapsed(String fecha) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDateTime ahora = LocalDateTime.now();
         Duration duracion = Duration.between(LocalDateTime.parse(fecha, formatter), ahora);
 
         long horas = duracion.toHours();
         long minutos = duracion.toMinutes() % 60;
-
         return String.format("%d horas y %d minutos", horas, minutos);
     }
 }

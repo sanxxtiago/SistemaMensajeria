@@ -16,7 +16,7 @@ public class ServicioDAO {
 
     }
 
-        public void registroServicio(Servicio servicio) throws RHException{//Clase que maneja el acceso a la tabla servicio de la BD.
+    public void registroServicio(Servicio servicio) throws RHException{//Clase que maneja el acceso a la tabla servicio de la BD.
         try{
             String strSQL = "INSERT INTO public.servicio(k_idservicio, k_tipoidcliente, k_idcliente,"+
             " k_tipoidmensajero, k_idmensajero, k_codigopostal, q_costo, i_tipopaquete, f_solicitud,"+
@@ -65,16 +65,16 @@ public class ServicioDAO {
             // Itera sobre los resultados y los "convierte" a objetos Servicio
             while (rs.next()) {
                 Servicio servicio = new Servicio();
-                servicio.setIdServicio(rs.getInt("idServicio"));
-                servicio.setTipoIdCliente(rs.getString("tipoIdCliente"));
-                servicio.setIdCliente(rs.getInt("idCliente"));
-                servicio.setTipoIdMensajero(rs.getString("tipoIdMensajero"));
-                servicio.setIdMensajero(rs.getInt("idMensajero"));
-                servicio.setCodigoPostal(rs.getInt("codigoPostal"));
-                servicio.setCosto(rs.getInt("costo"));
-                servicio.setTipoPaquete(rs.getString("tipoPaquete"));
+                servicio.setIdServicio(rs.getInt("k_idservicio"));
+                servicio.setTipoIdCliente(rs.getString("k_tipoidcliente"));
+                servicio.setIdCliente(rs.getInt("k_idcliente"));
+                servicio.setTipoIdMensajero(rs.getString("k_tipoidmensajero"));
+                servicio.setIdMensajero(rs.getInt("k_idmensajero"));
+                servicio.setCodigoPostal(rs.getInt("k_codigopostal"));
+                servicio.setCosto(rs.getInt("q_costo"));
+                servicio.setTipoPaquete(rs.getString("i_tipopaquete"));
                 servicio.setF_solicitud(rs.getString("f_solicitud"));
-                servicio.setEstado(rs.getString("estado"));
+                servicio.setEstado(rs.getString("i_estado"));
 
                 servicios.add(servicio);
             }
@@ -97,46 +97,45 @@ public class ServicioDAO {
 
         try {
             // Consulta SQL para seleccionar servicios por ID de cliente
-            String strSQL = "SELECT * FROM public.servicio WHERE idCliente = ?";
+            String strSQL = "SELECT * FROM public.servicio WHERE k_idcliente = ?";
             
             // Obtener la conexión desde el ServiceLocator
             Connection conexion = ServiceLocator.getInstance().tomarConexion();
             
             // PS preparada para ejecutar la consulta
             PreparedStatement prepStmt = conexion.prepareStatement(strSQL);
-            prepStmt.setInt(1, idCliente);
+            prepStmt.setLong(1, idCliente);
 
             // Ejecutar la consulta 
             ResultSet rs = prepStmt.executeQuery();
-
+            
             // Itera sobre los resultados y los "convierte" a objetos Servicio
             while (rs.next()) {
                 Servicio servicio = new Servicio();
-                servicio.setIdServicio(rs.getInt("idServicio"));
-                servicio.setTipoIdCliente(rs.getString("tipoIdCliente"));
-                servicio.setIdCliente(rs.getInt("idCliente"));
-                servicio.setTipoIdMensajero(rs.getString("tipoIdMensajero"));
-                servicio.setIdMensajero(rs.getInt("idMensajero"));
-                servicio.setCodigoPostal(rs.getInt("codigoPostal"));
-                servicio.setCosto(rs.getInt("costo"));
-                servicio.setTipoPaquete(rs.getString("tipoPaquete"));
-                servicio.setF_solicitud(rs.getString("f_solicitud"));
-                servicio.setEstado(rs.getString("estado"));
+                servicio.setIdServicio(rs.getInt("k_idservicio"));
+                servicio.setTipoIdCliente(rs.getString("k_tipoidcliente"));
+                servicio.setIdCliente(rs.getInt("k_idcliente"));
+                servicio.setTipoIdMensajero(rs.getString("k_tipoidmensajero"));
+                servicio.setIdMensajero(rs.getInt("k_idmensajero"));
+                servicio.setCodigoPostal(rs.getInt("k_codigopostal"));
+                servicio.setCosto(rs.getInt("q_costo"));
+                servicio.setTipoPaquete(rs.getString("i_tipopaquete"));
+                servicio.setF_solicitud(rs.getDate("f_solicitud").toString());
+                servicio.setEstado(rs.getString("i_estado"));
 
                 servicios.add(servicio);
             }
             // Cierre
             rs.close();
             prepStmt.close();
-
+            // Devolver la lista de servicios
+            return servicios;
+            
         } catch (SQLException e) {
             throw new RHException("ServicioDAO", "Error al consultar servicios por ID de cliente: " + e.getMessage());
         } finally {
-
-            ServiceLocator.getInstance().rollback();
+            ServiceLocator.getInstance().liberarConexion();
         }
-        // Devolver la lista de servicios
-        return servicios;
     }
     
 }

@@ -116,7 +116,5 @@ public class Servicio {
     public void setEstado(String estado) {
         this.estado = estado;
     }
-
-    
     
 }

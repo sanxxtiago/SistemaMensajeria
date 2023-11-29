@@ -253,6 +253,7 @@ public final class Customer extends javax.swing.JFrame implements Observer {
 
     @Override
     public void actualizar(Servicio servicio) {
+        System.out.println(servicio.getIdServicio());
         if(servicio == null){
             displayPanel(servicesList);
         } else {

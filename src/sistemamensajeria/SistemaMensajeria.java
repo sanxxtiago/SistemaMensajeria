@@ -4,9 +4,13 @@
  */
 package sistemamensajeria;
 
-import vista.customer.Customer;
-import vista.customer.services.ServiceItemDetailsPanel;
+import conexion.Conexion;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import util.ServiceLocator;
 
+import vista.customer.Customer;
 /**
  *
  * @author Santiago
@@ -17,7 +21,18 @@ public class SistemaMensajeria {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Customer.getInstance();
+        
+        //Establece la conexión con la bd alojada en la nube
+        Conexion.getSingleton().establecerConexion();
+        ServiceLocator.getInstance().tomarConexion();
+        try {
+            System.out.println(!Conexion.getSingleton().connection.isClosed());
+            if(!Conexion.getSingleton().connection.isClosed()) {
+                Customer.getInstance();
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(SistemaMensajeria.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
-    
+
 }

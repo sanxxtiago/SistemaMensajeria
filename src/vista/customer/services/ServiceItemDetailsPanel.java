@@ -19,31 +19,36 @@ public class ServiceItemDetailsPanel extends javax.swing.JPanel {
     public Subject subject = new Subject();
     private Mensajero mensajero;
     private Servicio servicio;
-    private Controlador controlador;
+    private Controlador controlador = new Controlador();
     /**
      * Creates new form serviceItemDetailsPanel
      */
      
     public void displayServiceData() {
-        serviceNameLabel.setText(String.valueOf(this.servicio.getIdServicio()));
+        serviceNameLabel.setText(String.valueOf(getTipoServicio(this.servicio.getTipoPaquete())));
         servicePriceLabel.setText(String.valueOf(this.servicio.getCosto()));
-        serviceDateLabel.setText(TextTransform.getTimeElapsed(this.servicio.getF_solicitud()));
+        serviceDateLabel.setText(this.servicio.getF_solicitud());
         serviceDeliverLabel.setText(this.mensajero.getNombre());
+    }
+    
+    public String getTipoServicio(String tipo){
+        if(tipo.equals("P")) return "Pago de recibo";
+        else if(tipo.equals("M")) return "Radicar documento";
+        else return "Envío de paquetes";
     }
 
     public ServiceItemDetailsPanel(Servicio servicio) {
         initComponents();
         this.servicio = servicio;
         
-        getMensajero();
-        
-        displayServiceData();
+        getMensajero();   
     }
     
     public void getMensajero() {
         try{
             Mensajero mensajero = controlador.consultarMensajeroPorId(this.servicio.getIdMensajero());
             this.mensajero = mensajero;
+            displayServiceData();
         } catch (Exception e) {
             System.out.println(e);
         }

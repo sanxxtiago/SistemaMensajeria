@@ -26,7 +26,7 @@ public class Controlador {//Clase que permite controlar la app.
         cliente = new Cliente();
         cliente.setTipoID(tipoID);
         cliente.setIdCliente(idCliente);
-        cliente.setNombre(nombre);   
+        cliente.setNombre(nombre);
         cliente.setApellido(apellido);  
         cliente.setTelefono(telefono); 
         cliente.setCorreo(correo);
@@ -47,6 +47,7 @@ public class Controlador {//Clase que permite controlar la app.
 
     // Método para consultar un mensajero por ID
     public Mensajero consultarMensajeroPorId(int idMensajero) throws RHException {
+        /* System.out.println("1.2.1"); */
         return mensajeroDAO.consultarMensajeroPorId(idMensajero);
     }
 }
