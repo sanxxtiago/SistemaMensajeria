@@ -8,59 +8,88 @@ package modelo;
  *
  * @author Santiago
  */
-public class Cliente { //Clase donde se guardan los atributos del cliente.
-    private String tipoID;//Cambiar esto a un char
-    private int idCliente;
+public class Cliente {
+    private String tipoId;
+    private long idCliente;
     private String nombre;
     private String apellido;
-    private int telefono;
+    private long telefono;
     private String correo;
-    private String password;
+    private String contrasena;
 
-    
+    // Constructor
     public Cliente() {
+        // Default constructor
     }
 
-    public String getTipoID() {
-        return tipoID;
+    // Getters and Setters
+    public String getTipoId() {
+        return tipoId;
     }
-    public void setTipoID(String tipoID) {
-        this.tipoID = tipoID;
+
+    public void setTipoId(String tipoId) {
+        this.tipoId = tipoId;
     }
-    public int getIdCliente() {
+
+    public long getIdCliente() {
         return idCliente;
     }
-    public void setIdCliente(int idCliente) {
+
+    public void setIdCliente(long idCliente) {
         this.idCliente = idCliente;
     }
+
     public String getNombre() {
         return nombre;
     }
+
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+
     public String getApellido() {
         return apellido;
     }
+
     public void setApellido(String apellido) {
         this.apellido = apellido;
     }
-    public int getTelefono() {
+
+    public long getTelefono() {
         return telefono;
     }
-    public void setTelefono(int telefono) {
+
+    public void setTelefono(long telefono) {
         this.telefono = telefono;
     }
+
     public String getCorreo() {
         return correo;
     }
+
     public void setCorreo(String correo) {
         this.correo = correo;
     }
-    public String getPassword() {
-        return password;
+
+    public String getContrasena() {
+        return contrasena;
     }
-    public void setPassword(String password) {
-        this.password = password;
+
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
+    }
+
+    // Optional: Override toString method for debugging
+    @Override
+    public String toString() {
+        return "Cliente{" +
+                "tipoId='" + tipoId + '\'' +
+                ", idCliente=" + idCliente +
+                ", nombre='" + nombre + '\'' +
+                ", apellido='" + apellido + '\'' +
+                ", telefono=" + telefono +
+                ", correo='" + correo + '\'' +
+                ", contrasena='" + contrasena + '\'' +
+                '}';
     }
 }
