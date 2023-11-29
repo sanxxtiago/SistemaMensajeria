@@ -1,4 +1,4 @@
-/*
+    /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
@@ -21,11 +21,15 @@ import vista.customer.services.ServicesListPanel;
 public final class Customer extends javax.swing.JFrame implements Observer {
 
     private static Customer instance;
+    private static int clienteIdInstance;
     
-    private ServicesListPanel servicesList = new ServicesListPanel();
+    private ServicesListPanel servicesList;
     
-    public Customer() {
+    public Customer(int clienteId) {
         initComponents();
+        clienteIdInstance = clienteId;
+        System.out.println(clienteId);
+        servicesList = new ServicesListPanel(clienteId);
         servicesList.subject.agregarObservador(this);
         displayPanel(servicesList);
     }
@@ -252,7 +256,7 @@ public final class Customer extends javax.swing.JFrame implements Observer {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Customer().setVisible(true);
+                new Customer(clienteIdInstance).setVisible(true);
             }
         });
     }

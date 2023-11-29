@@ -3,6 +3,7 @@ package modelo;
 import util.RHException;
 import javax.swing.JOptionPane;
 import modelo.GestionMensajero;
+import vista.ClienteMain;
 public class LoginController {
 
     private GestionClientes gestionClientes;
@@ -17,6 +18,8 @@ public class LoginController {
         try {
             Cliente cliente = gestionClientes.consultarClientePorCorreo(email);
             if (cliente != null && cliente.getPassword().equals(password)) {
+                ClienteMain clienteMain = new ClienteMain(cliente);
+                clienteMain.setVisible(true);
                 return true; // Client login successful
             }
 

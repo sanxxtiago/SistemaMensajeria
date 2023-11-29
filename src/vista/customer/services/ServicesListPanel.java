@@ -25,12 +25,16 @@ import utils.Subject;
 public class ServicesListPanel extends javax.swing.JPanel {
 
     Controlador controlador = new Controlador();
+    private static int clienteIdInstance;
     public Subject subject = new Subject();
     private JButton botonFuncion;
     /**
      * Creates new form ServicesListPanel
      */
-    public ServicesListPanel() {
+    public ServicesListPanel(int clienteId) {
+        clienteIdInstance = clienteId;
+        
+        System.out.println(clienteId);
         initComponents();
         displayServices();
     }
@@ -53,7 +57,7 @@ public class ServicesListPanel extends javax.swing.JPanel {
     
     public void displayServices() {
         try{
-            List<Servicio> services = controlador.consultarServiciosPorIdCliente(456789123);
+            List<Servicio> services = controlador.consultarServiciosPorIdCliente(clienteIdInstance);
             //System.out.println(services.get(0).getActividad().getDireccion());
             List<Mensajero> mensajeros = new ArrayList<>();
             
