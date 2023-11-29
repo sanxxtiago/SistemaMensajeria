@@ -4,6 +4,7 @@
  */
 package vista;
 
+import modelo.Cliente;
 /**
  *
  * @author Felipe Paez
@@ -217,7 +218,9 @@ public class Iniciosesion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BotonISActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonISActionPerformed
-        // TODO add your handling code here:
+        RegistroMensajero registroMensajero = new RegistroMensajero();
+        registroMensajero.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_BotonISActionPerformed
 
     private void ContrasenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ContrasenaActionPerformed

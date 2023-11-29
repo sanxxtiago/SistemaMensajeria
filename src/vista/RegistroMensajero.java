@@ -121,8 +121,13 @@ public class RegistroMensajero extends javax.swing.JFrame {
 
         cancelarButton.setBackground(new java.awt.Color(255, 102, 102));
         cancelarButton.setForeground(new java.awt.Color(255, 255, 255));
-        cancelarButton.setText("Cancelar");
+        cancelarButton.setText("Atrás");
         cancelarButton.setActionCommand("Crear cuenta");
+        cancelarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelarButtonActionPerformed(evt);
+            }
+        });
         getContentPane().add(cancelarButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 460, 90, -1));
 
         crearCuentaButton.setBackground(new java.awt.Color(51, 102, 255));
@@ -216,6 +221,12 @@ public class RegistroMensajero extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_crearCuentaButtonActionPerformed
+
+    private void cancelarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarButtonActionPerformed
+        Iniciosesion iniciarSesion = new Iniciosesion();
+        iniciarSesion.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_cancelarButtonActionPerformed
 
     /**
      * @param args the command line arguments
