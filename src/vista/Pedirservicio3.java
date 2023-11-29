@@ -495,11 +495,11 @@ public class Pedirservicio3 extends javax.swing.JFrame {
                 .addComponent(jLabel50)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(nompack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47)
+                .addGap(53, 53, 53)
                 .addComponent(jLabel52)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(53, 53, 53)
+                .addGap(47, 47, 47)
                 .addComponent(jLabel53)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lugarrem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -802,41 +802,13 @@ public class Pedirservicio3 extends javax.swing.JFrame {
     private javax.swing.JLabel Numrecibos;
     private javax.swing.JButton agregardir1;
     private javax.swing.JButton agregardir2;
-    private javax.swing.JButton agregardirec1;
-    private javax.swing.JButton agregardirec2;
-    private javax.swing.JButton agregardirec3;
-    private javax.swing.JButton agregardirec4;
-    private javax.swing.JButton agregardirec5;
-    private javax.swing.JButton agregardirec6;
-    private javax.swing.JButton agregardirec7;
     private javax.swing.JButton agregardirecprincipal;
     private javax.swing.JButton agregarpack;
     private java.awt.Canvas canvas1;
     private javax.swing.JButton confirmar;
-    private javax.swing.JRadioButton copiacorreo;
-    private javax.swing.JRadioButton copiacorreo1;
-    private javax.swing.JRadioButton copiacorreo2;
-    private javax.swing.JRadioButton copiacorreo3;
-    private javax.swing.JRadioButton copiacorreo4;
-    private javax.swing.JRadioButton copiacorreo5;
-    private javax.swing.JRadioButton copiacorreo6;
     private javax.swing.JLabel costorecibo;
     private javax.swing.JTextField descripcion;
-    private javax.swing.JRadioButton devolverdoc1;
-    private javax.swing.JRadioButton devolverdoc2;
-    private javax.swing.JRadioButton devolverdoc3;
-    private javax.swing.JRadioButton devolverdoc4;
-    private javax.swing.JRadioButton devolverdoc5;
-    private javax.swing.JRadioButton devolverdoc6;
-    private javax.swing.JRadioButton devolverdoc7;
     private javax.swing.JTextField direccion;
-    private javax.swing.JTextField direcciones;
-    private javax.swing.JTextField direcciones1;
-    private javax.swing.JTextField direcciones2;
-    private javax.swing.JTextField direcciones3;
-    private javax.swing.JTextField direcciones4;
-    private javax.swing.JTextField direcciones5;
-    private javax.swing.JTextField direcciones6;
     private javax.swing.JRadioButton efectivo;
     private javax.swing.JFormattedTextField fecha;
     private javax.swing.JFormattedTextField hora;
@@ -861,29 +833,8 @@ public class Pedirservicio3 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
-    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel30;
-    private javax.swing.JLabel jLabel31;
-    private javax.swing.JLabel jLabel32;
-    private javax.swing.JLabel jLabel33;
-    private javax.swing.JLabel jLabel34;
-    private javax.swing.JLabel jLabel35;
-    private javax.swing.JLabel jLabel36;
-    private javax.swing.JLabel jLabel37;
-    private javax.swing.JLabel jLabel38;
-    private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel40;
-    private javax.swing.JLabel jLabel41;
-    private javax.swing.JLabel jLabel42;
-    private javax.swing.JLabel jLabel43;
-    private javax.swing.JLabel jLabel44;
-    private javax.swing.JLabel jLabel45;
-    private javax.swing.JLabel jLabel46;
-    private javax.swing.JLabel jLabel47;
-    private javax.swing.JLabel jLabel48;
-    private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel50;
     private javax.swing.JLabel jLabel52;
@@ -894,25 +845,11 @@ public class Pedirservicio3 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel10;
-    private javax.swing.JPanel jPanel11;
-    private javax.swing.JPanel jPanel12;
-    private javax.swing.JPanel jPanel13;
-    private javax.swing.JPanel jPanel14;
-    private javax.swing.JPanel jPanel15;
-    private javax.swing.JPanel jPanel16;
-    private javax.swing.JPanel jPanel17;
-    private javax.swing.JPanel jPanel18;
-    private javax.swing.JPanel jPanel19;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel20;
-    private javax.swing.JPanel jPanel21;
-    private javax.swing.JPanel jPanel22;
     private javax.swing.JPanel jPanel23;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JTextField listapack;
     private javax.swing.JTextField lugarrecpt;
@@ -924,13 +861,6 @@ public class Pedirservicio3 extends javax.swing.JFrame {
     private javax.swing.JButton quitarpack;
     private javax.swing.JRadioButton tarjeta;
     private javax.swing.JLabel tiempo;
-    private javax.swing.JTextField tipodoc;
-    private javax.swing.JTextField tipodoc1;
-    private javax.swing.JTextField tipodoc2;
-    private javax.swing.JTextField tipodoc3;
-    private javax.swing.JTextField tipodoc4;
-    private javax.swing.JTextField tipodoc5;
-    private javax.swing.JTextField tipodoc6;
     private javax.swing.JLabel total;
     // End of variables declaration//GEN-END:variables
 }
