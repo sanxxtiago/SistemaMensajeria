@@ -142,17 +142,16 @@ public class RegistroCliente extends javax.swing.JFrame {
 
     private void crearCuentaButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearCuentaButton1ActionPerformed
 
-        Cliente cliente = new Cliente();
-
-        cliente.setNombre(nombresInput.getText());
-        cliente.setApellido(apellidosInput.getText());
-        cliente.setTipoID(tipoDocumentoComboBox.getSelectedItem().toString());
-        cliente.setIdCliente(Integer.parseInt(numeroDocInput.getText()));
-        cliente.setTelefono(Integer.parseInt(telefonoInput.getText()));
-        cliente.setCorreo(correoInput.getText());
-        cliente.setPassword(contrasenaInput.getText());
-
         try {
+            Cliente cliente = new Cliente();
+
+            cliente.setNombre(nombresInput.getText());
+            cliente.setApellido(apellidosInput.getText());
+            cliente.setTipoID(tipoDocumentoComboBox.getSelectedItem().toString());
+            cliente.setIdCliente(Integer.parseInt(numeroDocInput.getText()));
+            cliente.setTelefono(Integer.parseInt(telefonoInput.getText()));
+            cliente.setCorreo(correoInput.getText());
+            cliente.setPassword(contrasenaInput.getText());
             Controlador controlador = new Controlador();
             if (controlador.registroCliente(cliente)) {
                 JOptionPane.showMessageDialog(null, "Se ha registrado el cliente satisfactoriamente.");

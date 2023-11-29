@@ -1,7 +1,6 @@
-package negocio;
+package modelo;
 
-
-import datos.ServicioDAO;
+import dao.ServicioDAO;
 import java.util.ArrayList;
 import java.util.List;
 import util.RHException;

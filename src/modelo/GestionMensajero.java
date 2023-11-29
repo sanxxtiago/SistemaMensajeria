@@ -1,17 +1,18 @@
 package negocio;
 
 
-import datos.MensajeroDAO;
+import dao.MensajeroDAO;
 import java.util.List;
+import modelo.Mensajero;
 import util.RHException;
 
 /**
  * Clase controladora de la aplicación para manejar operaciones de clientes.
  */
-public class GestionMensajeros {
+public class GestionMensajero {
     private MensajeroDAO mensajeroDAO;
 
-    public GestionClientes() {
+    public GestionMensajero() {
         mensajeroDAO = new MensajeroDAO();
     }
 

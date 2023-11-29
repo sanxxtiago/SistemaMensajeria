@@ -2,6 +2,7 @@ package dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import modelo.Mensajero;
@@ -69,7 +70,7 @@ public class MensajeroDAO {
                 mensajero.setIdMensajero(rs.getInt("k_idmensajero"));
                 mensajero.setNombre(rs.getString("n_nombre"));
                 mensajero.setApellido(rs.getString("n_apellido"));
-                mensajero.setTelefono(rs.getLong("q_telefono"));
+                mensajero.setTelefono((int) rs.getLong("q_telefono"));
                 mensajero.setF_nacimiento(rs.getDate("f_nacimiento").toString());
                 mensajero.setNacionalidad(rs.getString("n_nacionalidad"));
                 mensajero.setSexo(rs.getString("i_sexo"));
