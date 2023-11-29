@@ -32,9 +32,10 @@ public class ClienteMain extends javax.swing.JFrame {
         solicitudesButton = new javax.swing.JButton();
         historialButton = new javax.swing.JButton();
         buscarInput = new javax.swing.JTextField();
-        serviciosContainer = new javax.swing.JLabel();
         lineLabel = new javax.swing.JLabel();
         serviciosLabel = new javax.swing.JLabel();
+        solicitarServiciosPanel = new javax.swing.JPanel();
+        serviciosContainer = new javax.swing.JLabel();
         container = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -57,10 +58,6 @@ public class ClienteMain extends javax.swing.JFrame {
         getContentPane().add(historialButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 20, -1, -1));
         getContentPane().add(buscarInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 20, 80, -1));
 
-        serviciosContainer.setBackground(new java.awt.Color(204, 204, 204));
-        serviciosContainer.setOpaque(true);
-        getContentPane().add(serviciosContainer, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 120, 510, 320));
-
         lineLabel.setForeground(new java.awt.Color(204, 204, 204));
         lineLabel.setText("_____________________________________________________________________________________________________________________________________________\n");
         getContentPane().add(lineLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 720, -1));
@@ -69,13 +66,17 @@ public class ClienteMain extends javax.swing.JFrame {
         serviciosLabel.setText("Servicios");
         getContentPane().add(serviciosLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(126, 82, -1, -1));
 
+        solicitarServiciosPanel.setLayout(new java.awt.GridLayout());
+        getContentPane().add(solicitarServiciosPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 70, 570, 390));
+
+        serviciosContainer.setBackground(new java.awt.Color(204, 204, 204));
+        serviciosContainer.setOpaque(true);
+        getContentPane().add(serviciosContainer, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 120, 510, 320));
         container.setBackground(new java.awt.Color(255, 255, 255));
         container.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/img/panel.png"))); // NOI18N
         container.setMaximumSize(new java.awt.Dimension(464, 412));
         container.setMinimumSize(new java.awt.Dimension(464, 412));
         container.setOpaque(true);
-        getContentPane().add(container, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 720, 510));
-
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
@@ -128,6 +129,7 @@ public class ClienteMain extends javax.swing.JFrame {
     private javax.swing.JLabel serviciosContainer;
     private javax.swing.JLabel serviciosLabel;
     private javax.swing.JButton solicitarButton;
+    private javax.swing.JPanel solicitarServiciosPanel;
     private javax.swing.JButton solicitudesButton;
     // End of variables declaration//GEN-END:variables
 }

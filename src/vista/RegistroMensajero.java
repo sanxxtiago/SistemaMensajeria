@@ -4,13 +4,9 @@
  */
 package vista;
 
-import dao.MensajeroDAO;
-import java.text.SimpleDateFormat;
-import java.sql.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import modelo.GestionMensajero;
 import modelo.Mensajero;
-import util.RHException;
 
 /**
  *
@@ -122,8 +118,13 @@ public class RegistroMensajero extends javax.swing.JFrame {
 
         cancelarButton.setBackground(new java.awt.Color(255, 102, 102));
         cancelarButton.setForeground(new java.awt.Color(255, 255, 255));
-        cancelarButton.setText("Cancelar");
+        cancelarButton.setText("Atrás");
         cancelarButton.setActionCommand("Crear cuenta");
+        cancelarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelarButtonActionPerformed(evt);
+            }
+        });
         getContentPane().add(cancelarButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 460, 90, -1));
 
         crearCuentaButton.setBackground(new java.awt.Color(51, 102, 255));
@@ -188,30 +189,33 @@ public class RegistroMensajero extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void crearCuentaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearCuentaButtonActionPerformed
-        try {
-            Mensajero mensajero = new Mensajero();
-            
-            mensajero.setTipoId(tipoDocumentoComboBox.getSelectedItem().toString());
-            mensajero.setIdMensajero(Integer.parseInt(numeroDocInput.getText()));  
-            mensajero.setNombre(nombresInput.getText());
-            mensajero.setApellido(apellidosInput.getText());
-            mensajero.setTelefono(Integer.parseInt(telefonoInput.getText()));
-            mensajero.setF_nacimiento(fNacimientoInput.getText());
-            mensajero.setNacionalidad(nacionalidadInput.getText());
-            mensajero.setSexo(sexoComboBox.getSelectedItem().toString());
-            mensajero.setCorreo(correoInput.getText());
-            mensajero.setContrasena(contrasenaInput.getText());
-            mensajero.setMedioTransporte(tipoTransporteComboBox.getSelectedItem().toString());
-            mensajero.setCalificacionPromedio(0f);
-            
-            MensajeroDAO mensajeroDAO = new MensajeroDAO();
-            
-            mensajeroDAO.registroMensajero(mensajero);
-        } catch (RHException ex) {
-            Logger.getLogger(RegistroMensajero.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+
+        Mensajero mensajero = new Mensajero();
+
+        mensajero.setTipoId(tipoDocumentoComboBox.getSelectedItem().toString());
+        mensajero.setIdMensajero(Integer.parseInt(numeroDocInput.getText()));
+        mensajero.setNombre(nombresInput.getText());
+        mensajero.setApellido(apellidosInput.getText());
+        mensajero.setTelefono(Integer.parseInt(telefonoInput.getText()));
+        mensajero.setF_nacimiento(fNacimientoInput.getText());
+        mensajero.setNacionalidad(nacionalidadInput.getText());
+        mensajero.setSexo(sexoComboBox.getSelectedItem().toString());
+        mensajero.setCorreo(correoInput.getText());
+        mensajero.setContrasena(contrasenaInput.getText());
+        mensajero.setMedioTransporte(tipoTransporteComboBox.getSelectedItem().toString());
+        mensajero.setCalificacionPromedio(0f);
+
+        GestionMensajero gm = new GestionMensajero();
+        JOptionPane.showMessageDialog(null, "Se ha registrado el mensajero satisfactoriamente.");
+
+
     }//GEN-LAST:event_crearCuentaButtonActionPerformed
+
+    private void cancelarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarButtonActionPerformed
+        Iniciosesion iniciarSesion = new Iniciosesion();
+        iniciarSesion.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_cancelarButtonActionPerformed
 
     /**
      * @param args the command line arguments

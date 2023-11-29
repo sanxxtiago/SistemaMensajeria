@@ -51,9 +51,9 @@ public class ServiceDetailsPanel extends javax.swing.JPanel {
         serviceReturn.setSelected(true);
         deliverName.setText(mensajero.getNombre() + " " + mensajero.getApellido());
         deliverVehicle.setText(getTipoTransporte(mensajero.getMedioTransporte()));
-        activityAdress.setText(servicio.getActividad().getDireccion());
-        activityDescription.setText("<html>" + servicio.getActividad().getDescripcionActividad() +"</html>");
-        activityDetails.setText("<html>" + servicio.getActividad().getDetallesDireccion()+"</html>");
+        //activityAdress.setText(servicio.getActividad().getDireccion());
+        //activityDescription.setText("<html>" + servicio.getActividad().getDescripcionActividad() +"</html>");
+        //activityDetails.setText("<html>" + servicio.getActividad().getDetallesDireccion()+"</html>");
     }
 
     /**

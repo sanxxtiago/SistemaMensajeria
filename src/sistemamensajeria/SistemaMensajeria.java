@@ -5,12 +5,12 @@
 package sistemamensajeria;
 
 import conexion.Conexion;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import util.ServiceLocator;
 
-import vista.customer.Customer;
 /**
  *
  * @author Santiago
@@ -21,18 +21,17 @@ public class SistemaMensajeria {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
+
         //Establece la conexión con la bd alojada en la nube
-        Conexion.getSingleton().establecerConexion();
-        ServiceLocator.getInstance().tomarConexion();
+        Connection conexion = ServiceLocator.getInstance().tomarConexion();
         try {
-            System.out.println(!Conexion.getSingleton().connection.isClosed());
-            if(!Conexion.getSingleton().connection.isClosed()) {
-                new Customer().setVisible(true);
-            }
+            //Si bota false la conexión está activa
+            System.out.println(conexion.isClosed());
+
         } catch (SQLException ex) {
             Logger.getLogger(SistemaMensajeria.class.getName()).log(Level.SEVERE, null, ex);
         }
+
     }
 
 }

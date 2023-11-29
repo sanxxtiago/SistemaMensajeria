@@ -29,12 +29,9 @@ public class Conexion {
     public Conexion() {
 
         this.jdbcUrl = "jdbc:postgresql://ep-misty-math-86012971.us-east-2.aws.neon.fl0.io:5432/SistemaMensajeriaDB?sslmode=require";
+        //this.jdbcUrl = "jdbc:postgresql://localhost:5432/ProyectoPrueba";
         this.usuario = "fl0user";
         this.contrasenia = "LbcJs1Sx4mwa";
-        
-        //this.jdbcUrl = "jdbc:postgresql://localhost:5433/projectFBD";
-        //this.usuario = "postgres";
-         //this.contrasenia = "password"; //Debe reemplazarse por el password en su propia instalación
     }
 
     public void establecerConexion() {

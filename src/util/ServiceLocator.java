@@ -46,11 +46,15 @@ public class ServiceLocator {//Clase que permite manejar las conecciones.
      */
     private ServiceLocator() throws Exception {
         try {
+            // Se registra el Driver y se crea la conexion
+            String url = "jdbc:postgresql://localhost:5432/SistemaMensajeria";
+            String usuario = "postgres";
+            String password = "Lau.cubillos1234"; //Debe reemplazarse por el password en su propia instalación
 
-            String url = "jdbc:postgresql://ep-misty-math-86012971.us-east-2.aws.neon.fl0.io:5432/SistemaMensajeriaDB?sslmode=require";
+            url = "jdbc:postgresql://ep-misty-math-86012971.us-east-2.aws.neon.fl0.io:5432/SistemaMensajeriaDB?sslmode=require";
             //this.jdbcUrl = "jdbc:postgresql://localhost:5432/ProyectoPrueba";
-            String usuario = "fl0user";
-            String password = "LbcJs1Sx4mwa";
+            usuario = "fl0user";
+            password = "LbcJs1Sx4mwa";
 
             Class.forName("org.postgresql.Driver");
             conexion = DriverManager.getConnection(url, usuario, password);
@@ -68,7 +72,7 @@ public class ServiceLocator {//Clase que permite manejar las conecciones.
     public synchronized Connection tomarConexion() {
         while (!conexionLibre) {
             try {
-              wait();
+                wait();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

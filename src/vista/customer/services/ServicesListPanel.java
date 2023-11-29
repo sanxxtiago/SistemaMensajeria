@@ -54,7 +54,7 @@ public class ServicesListPanel extends javax.swing.JPanel {
     public void displayServices() {
         try{
             List<Servicio> services = controlador.consultarServiciosPorIdCliente(456789123);
-            System.out.println(services.get(0).getActividad().getDireccion());
+            //System.out.println(services.get(0).getActividad().getDireccion());
             List<Mensajero> mensajeros = new ArrayList<>();
             
              // Crear la tabla con un modelo de datos

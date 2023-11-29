@@ -4,10 +4,11 @@
  */
 package vista;
 
-import dao.ClienteDAO;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import modelo.Cliente;
+import modelo.GestionClientes;
 import util.RHException;
 
 /**
@@ -21,6 +22,7 @@ public class RegistroCliente extends javax.swing.JFrame {
      */
     public RegistroCliente() {
         initComponents();
+        this.setSize(720, 512);
     }
 
     /**
@@ -99,8 +101,13 @@ public class RegistroCliente extends javax.swing.JFrame {
 
         crearCuentaButton.setBackground(new java.awt.Color(255, 102, 102));
         crearCuentaButton.setForeground(new java.awt.Color(255, 255, 255));
-        crearCuentaButton.setText("Cancelar");
+        crearCuentaButton.setText("Atrás");
         crearCuentaButton.setActionCommand("Crear cuenta");
+        crearCuentaButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                crearCuentaButtonActionPerformed(evt);
+            }
+        });
         getContentPane().add(crearCuentaButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 410, 196, -1));
 
         crearCuentaButton1.setBackground(new java.awt.Color(51, 102, 255));
@@ -140,10 +147,10 @@ public class RegistroCliente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void crearCuentaButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearCuentaButton1ActionPerformed
+
         try {
-            // TODO add your handling code here:
             Cliente cliente = new Cliente();
-            
+
             cliente.setNombre(nombresInput.getText());
             cliente.setApellido(apellidosInput.getText());
             cliente.setTipoID(tipoDocumentoComboBox.getSelectedItem().toString());
@@ -151,15 +158,23 @@ public class RegistroCliente extends javax.swing.JFrame {
             cliente.setTelefono(Integer.parseInt(telefonoInput.getText()));
             cliente.setCorreo(correoInput.getText());
             cliente.setPassword(contrasenaInput.getText());
-            
-            ClienteDAO clienteDAO = new ClienteDAO();
-            
-            clienteDAO.registroCliente(cliente);
+            GestionClientes gc = new GestionClientes();
+            gc.registrarCliente(cliente);
+            JOptionPane.showMessageDialog(null, "Se ha registrado el cliente satisfactoriamente.");
+
         } catch (RHException ex) {
+            JOptionPane.showMessageDialog(null, "ERROR: No se ha registrado el cliente.");
             Logger.getLogger(RegistroCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
+
     }//GEN-LAST:event_crearCuentaButton1ActionPerformed
+
+    private void crearCuentaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearCuentaButtonActionPerformed
+        Iniciosesion iniciarSesion = new Iniciosesion();
+        iniciarSesion.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_crearCuentaButtonActionPerformed
 
     /**
      * @param args the command line arguments
