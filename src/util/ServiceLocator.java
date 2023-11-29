@@ -67,11 +67,11 @@ public class ServiceLocator {//Clase que permite manejar las conecciones.
      */
     public synchronized Connection tomarConexion() {
         while (!conexionLibre) {
-                try {
-                  wait();
-                } catch (InterruptedException e) {
-                        e.printStackTrace();
-                }
+            try {
+              wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
 
         conexionLibre = false;

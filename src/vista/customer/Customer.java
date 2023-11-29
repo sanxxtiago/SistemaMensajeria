@@ -4,7 +4,9 @@
  */
 package vista.customer;
 
+import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JTable;
 import modelo.Servicio;
 import utils.Observer;
 import utils.Constants;
@@ -20,11 +22,12 @@ public final class Customer extends javax.swing.JFrame implements Observer {
     private static final Customer instance = new Customer();
     private ServicesListPanel servicesList = new ServicesListPanel();
     
+    
     public static  Customer getInstance() {
         return instance;
     }
     
-    private Customer() {
+    public Customer() {
         initComponents();
         displayPanel(servicesList);
     }
@@ -177,6 +180,7 @@ public final class Customer extends javax.swing.JFrame implements Observer {
         navBar.getAccessibleContext().setAccessibleName("navBar");
 
         content.setBackground(new java.awt.Color(255, 255, 255));
+        content.setMinimumSize(new java.awt.Dimension(1440, 950));
 
         javax.swing.GroupLayout contentLayout = new javax.swing.GroupLayout(content);
         content.setLayout(contentLayout);

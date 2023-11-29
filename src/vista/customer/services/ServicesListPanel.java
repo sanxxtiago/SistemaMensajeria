@@ -4,8 +4,19 @@
  */
 package vista.customer.services;
 
+import java.awt.BorderLayout;
+import java.awt.Container;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import modelo.Mensajero;
 import modelo.Servicio;
 import negocio.Controlador;
 import utils.Constants;
@@ -18,6 +29,8 @@ import vista.customer.Customer;
 public class ServicesListPanel extends javax.swing.JPanel {
 
     Controlador controlador = new Controlador();
+    private JTable tabla;
+    private JButton botonFuncion;
     /**
      * Creates new form ServicesListPanel
      */
@@ -26,7 +39,11 @@ public class ServicesListPanel extends javax.swing.JPanel {
         displayServices();
     }
     
-    
+    public String getTipoServicio(String tipo){
+        if(tipo.equals("P")) return "Pago de recibo";
+        else if(tipo.equals("M")) return "Radicar documento";
+        else return "Envío de paquetes";
+    }
     
     public int[] getServicePanelCords (int index) {
         int espacioEntreComponentes = 50;
@@ -41,61 +58,76 @@ public class ServicesListPanel extends javax.swing.JPanel {
         return new int[]{x, y};
     }
     
-    public void getServicesPanels () {
+    public void displayServices() {
         try{
             List<Servicio> services = controlador.consultarServiciosPorIdCliente(456789123);
             
-            
-            
-            /* List<Servicio> services = new ArrayList<>();
-            
-            Servicio servicio = new Servicio();
-            servicio.setIdServicio(423423423);
-            servicio.setTipoIdCliente("k_tipoidcliente");
-            servicio.setIdCliente(43534534);
-            servicio.setTipoIdMensajero("k_tipoidmensajero");
-            servicio.setIdMensajero(123456789);
-            servicio.setCodigoPostal(423423);
-            servicio.setCosto(14000);
-            servicio.setTipoPaquete("i_tipopaquete");
-            servicio.setF_solicitud("f_solicitud");
-            servicio.setEstado("i_estado");
-            
-            services.add(servicio);
-            services.add(servicio);
-            services.add(servicio);
-            services.add(servicio); */
-            
-            
-            
-            ServiceItemDetailsPanel servicesPanels[] = new ServiceItemDetailsPanel[services.size()];
-        
-            Customer indexClass = Customer.getInstance();
-            
+             // Crear la tabla con un modelo de datos
+            String[] columnas = {"Id", "Tipo servicio", "Precio", "Fecha solicitud", "Mensajero"};
+            Object[][] filas = new Object[services.size()][5];
 
-            for(int index = 0; index < services.size() ; index++) {
-
-                int[] coords = getServicePanelCords(index);
-                System.out.println(services.get(index).getF_solicitud());
-
-                servicesPanels[index] = new ServiceItemDetailsPanel(services.get(index));
-                servicesPanels[index].setSize(Constants.getItemXSize(), Constants.getItemYSize());
-                servicesPanels[index].setLocation(coords[0], coords[1]);
-
-                serviceListContainer.add(servicesPanels[index]);
+            for (int i = 0; i < services.size(); i++) {
+                Mensajero mensajero = controlador.consultarMensajeroPorId(services.get(i).getIdMensajero());
                 
-                servicesPanels[index].subject.agregarObservador(indexClass);
+                filas[i][0] = services.get(i).getIdServicio();
+                filas[i][1] = getTipoServicio(services.get(i).getTipoPaquete());
+                filas[i][2] = services.get(i).getCosto();
+                filas[i][3] = services.get(i).getF_solicitud();
+                filas[i][4] = mensajero.getNombre() + " " + mensajero.getApellido();
+                System.out.println(services.get(i).getIdServicio());
             }
-        }catch(Exception e) {
+
+            DefaultTableModel modelo = new DefaultTableModel(filas, columnas);
+            tabla = new JTable(modelo);
+
+            // Añadir la tabla a un JScrollPane para que sea desplazable
+            JScrollPane scrollPane = new JScrollPane(tabla);
+
+            // Crear el botón
+            botonFuncion = new JButton("Realizar Función");
+
+            // Añadir un ActionListener al botón para manejar eventos
+            botonFuncion.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    // Obtener la fila seleccionada
+                    int filaSeleccionada = tabla.getSelectedRow();
+
+                    // Verificar si se seleccionó alguna fila
+                    if (filaSeleccionada != -1) {
+                        // Obtener el objeto Datos correspondiente a la fila seleccionada
+                        Servicio datoSeleccionado = services.get(filaSeleccionada);
+
+                        // Realizar la función asociada al objeto Datos
+                        
+                    }
+                }
+            });
+
+            // Crear un contenedor para organizar los componentes
+
+            // Añadir la tabla y el botón al contenedor
+            serviceListContainer.removeAll();
+            serviceListContainer.add(scrollPane, BorderLayout.CENTER);
+            serviceListContainer.add(botonFuncion, BorderLayout.SOUTH);
+            serviceListContainer.revalidate();
+            serviceListContainer.repaint();
+        
+        } catch(Exception e) {
             System.out.println(e);
         }
-    }
-    
-    public void displayServices() {
-        serviceListContainer.removeAll();
-        getServicesPanels();
-        serviceListContainer.revalidate();
-        serviceListContainer.repaint();
+
+       
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     }
 
     /**

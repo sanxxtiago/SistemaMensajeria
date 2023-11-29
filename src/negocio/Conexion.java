@@ -32,9 +32,9 @@ public class Conexion {
         this.usuario = "fl0user";
         this.contrasenia = "LbcJs1Sx4mwa";
         
-        this.jdbcUrl = "jdbc:postgresql://localhost:5433/projectFBD";
-        this.usuario = "postgres";
-         this.contrasenia = "password"; //Debe reemplazarse por el password en su propia instalación
+        //this.jdbcUrl = "jdbc:postgresql://localhost:5433/projectFBD";
+        //this.usuario = "postgres";
+         //this.contrasenia = "password"; //Debe reemplazarse por el password en su propia instalación
     }
 
     public void establecerConexion() {

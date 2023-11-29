@@ -28,7 +28,7 @@ public class SistemaMensajeria {
         try {
             System.out.println(!Conexion.getSingleton().connection.isClosed());
             if(!Conexion.getSingleton().connection.isClosed()) {
-                Customer.getInstance();
+                new Customer().setVisible(true);
             }
         } catch (SQLException ex) {
             Logger.getLogger(SistemaMensajeria.class.getName()).log(Level.SEVERE, null, ex);
