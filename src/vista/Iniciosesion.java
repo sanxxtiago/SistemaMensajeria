@@ -244,6 +244,9 @@ public class Iniciosesion extends javax.swing.JFrame {
             if ("quickapp.com".equals(dominio)) {
                 MensajeroMain mensajeroMain = new MensajeroMain();
                 mensajeroMain.setVisible(true);
+            } else {
+                ClienteMain consultaClienteForm = new ClienteMain();
+                consultaClienteForm.setVisible(true);
             }
 
             this.setVisible(false); // Hide the login form
