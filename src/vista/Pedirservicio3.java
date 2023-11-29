@@ -97,7 +97,7 @@ public class Pedirservicio3 extends javax.swing.JFrame {
         jPanel1.setForeground(new java.awt.Color(81, 81, 81));
         jPanel1.setPreferredSize(new java.awt.Dimension(467, 794));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/Im3.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/Imp3.png"))); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Road Rage", 0, 24)); // NOI18N
         jLabel2.setText("Envío de paquetes");
@@ -471,7 +471,7 @@ public class Pedirservicio3 extends javax.swing.JFrame {
                             .addComponent(jLabel54)
                             .addComponent(lugarrem)
                             .addComponent(lugarrecpt)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(55, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)

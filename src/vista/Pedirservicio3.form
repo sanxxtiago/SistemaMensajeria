@@ -172,7 +172,7 @@
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/vista/Im3.png"/>
+              <Image iconType="3" name="/vista/Imp3.png"/>
             </Property>
           </Properties>
         </Component>
@@ -594,7 +594,7 @@
                               <Component id="jLabel54" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="lugarrem" alignment="0" max="32767" attributes="0"/>
                               <Component id="lugarrecpt" max="32767" attributes="0"/>
-                              <Component id="jComboBox1" alignment="0" min="-2" pref="84" max="-2" attributes="0"/>
+                              <Component id="jComboBox1" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
