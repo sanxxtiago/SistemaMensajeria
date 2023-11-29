@@ -1,15 +1,37 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package modelo;
+package negocio;
+
+
+import datos.MensajeroDAO;
+import java.util.List;
+import util.RHException;
 
 /**
- *
- * @author Santiago
+ * Clase controladora de la aplicación para manejar operaciones de clientes.
  */
-public class GestionMensajero {
-    public boolean registroMensajero(Mensajero mensajero){
-        return true;
+public class GestionMensajeros {
+    private MensajeroDAO mensajeroDAO;
+
+    public GestionClientes() {
+        mensajeroDAO = new MensajeroDAO();
     }
+
+    /**
+     * Registra un nuevo cliente en el sistema.
+     *
+     * @throws RHException Si ocurre un error en el registro.
+     */
+    public void registrarMensajero(Mensajero mensajero) throws RHException {
+        mensajeroDAO.registroMensajero(mensajero);
+    }
+    /**
+     * Consulta la información de un cliente por su correo electrónico.
+     *
+     * @param correo El correo electrónico del cliente.
+     * @return Cliente El cliente consultado.
+     * @throws RHException Si ocurre un error durante la consulta.
+     */
+    public Mensajero consultarMensajeroPorCorreo(String correo) throws RHException {
+        return mensajeroDAO.consultarMensajeroPorCorreo(correo);
+    }
+
 }
