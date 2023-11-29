@@ -4,6 +4,7 @@
  */
 package utils;
 
+import modelo.Mensajero;
 import modelo.Servicio;
 
 /**
@@ -11,6 +12,6 @@ import modelo.Servicio;
  * @author dsola
  */
 public interface Observer {
-    void actualizar(Servicio servicio);
+    void actualizar(Servicio servicio, Mensajero mensajero);
     
 }

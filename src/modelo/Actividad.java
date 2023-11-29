@@ -8,6 +8,10 @@ public class Actividad {
     private String descripcionActividad;
 
     // Constructor
+
+    public Actividad() {
+    }
+    
     public Actividad(int idServicio, String idActividad, String direccion, String detallesDireccion, String descripcionActividad) {
         this.idServicio = idServicio;
         this.idActividad = idActividad;

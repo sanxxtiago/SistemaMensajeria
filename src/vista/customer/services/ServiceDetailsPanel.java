@@ -4,7 +4,9 @@
  */
 package vista.customer.services;
 
+import modelo.Mensajero;
 import modelo.Servicio;
+import negocio.Controlador;
 import utils.Subject;
 import vista.customer.Customer;
 
@@ -15,17 +17,43 @@ import vista.customer.Customer;
 public class ServiceDetailsPanel extends javax.swing.JPanel {
     
     public Subject subject = new Subject();
-
+    Controlador controlador = new Controlador();
+    
+    private Mensajero mensajero;
     private Servicio servicio;
     /**
      * Creates new form serviceDetailsPanel
      */
-    public ServiceDetailsPanel(Servicio servicio) {
+    public ServiceDetailsPanel(Servicio servicio, Mensajero mensajero) {
         this.servicio = servicio;
-        System.out.println(servicio.getIdServicio());
-        Customer customer = Customer.getInstance();
-        subject.agregarObservador(customer);
+        this.mensajero = mensajero;
         initComponents();
+        displayData();
+    }
+    
+    public String getTipoServicio(String tipo){
+        if(tipo.equals("P")) return "Pago de recibo";
+        else if(tipo.equals("M")) return "Radicar documento";
+        else return "Envío de paquetes";
+    }
+    
+    public String getTipoTransporte(String tipo){
+        if(tipo.equals("B")) return "Bicicleta";
+        else return "Motocicleta";
+    }
+    
+    public void displayData(){
+        serviceName.setText(getTipoServicio(this.servicio.getTipoPaquete()));
+        servicePrice.setText(String.valueOf(this.servicio.getCosto()));
+        serviceDate.setText(this.servicio.getF_solicitud());
+        servicePrice.setText("Paco");
+        servicePaymethod.setText("Efectivo");
+        serviceReturn.setSelected(true);
+        deliverName.setText(mensajero.getNombre() + " " + mensajero.getApellido());
+        deliverVehicle.setText(getTipoTransporte(mensajero.getMedioTransporte()));
+        activityAdress.setText(servicio.getActividad().getDireccion());
+        activityDescription.setText("<html>" + servicio.getActividad().getDescripcionActividad() +"</html>");
+        activityDetails.setText("<html>" + servicio.getActividad().getDetallesDireccion()+"</html>");
     }
 
     /**
@@ -41,35 +69,33 @@ public class ServiceDetailsPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
-        serviceDate14 = new javax.swing.JLabel();
-        serviceDate12 = new javax.swing.JLabel();
+        activityDetails = new javax.swing.JLabel();
+        activityDescription = new javax.swing.JLabel();
         serviceName17 = new java.awt.Label();
         serviceName18 = new java.awt.Label();
-        serviceDate11 = new javax.swing.JLabel();
+        activityAdress = new javax.swing.JLabel();
         serviceName7 = new java.awt.Label();
         serviceName2 = new java.awt.Label();
         serviceName3 = new java.awt.Label();
         jPanel2 = new javax.swing.JPanel();
-        serviceName = new java.awt.Label();
-        serviceDate = new javax.swing.JLabel();
+        dtails = new java.awt.Label();
+        deliverVehicle = new javax.swing.JLabel();
         serviceName5 = new java.awt.Label();
         serviceName14 = new java.awt.Label();
-        serviceDate9 = new javax.swing.JLabel();
-        cancelServiceButton = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
+        deliverName = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
-        serviceName1 = new java.awt.Label();
-        serviceDate1 = new javax.swing.JLabel();
+        serviceName = new java.awt.Label();
         jPanel5 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         serviceName8 = new java.awt.Label();
-        serviceName9 = new java.awt.Label();
-        serviceDate4 = new javax.swing.JLabel();
         serviceName10 = new java.awt.Label();
-        serviceDate6 = new javax.swing.JLabel();
+        servicePrice = new javax.swing.JLabel();
         serviceName11 = new java.awt.Label();
-        serviceDate7 = new javax.swing.JLabel();
-        jCheckBox2 = new javax.swing.JCheckBox();
+        servicePaymethod = new javax.swing.JLabel();
+        serviceReturn = new javax.swing.JCheckBox();
+        serviceName9 = new java.awt.Label();
+        serviceDate = new javax.swing.JLabel();
+        servicePrice1 = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(1440, 950));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -98,21 +124,21 @@ public class ServiceDetailsPanel extends javax.swing.JPanel {
         jPanel6.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(238, 238, 238), 1, true));
         jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        serviceDate14.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 14)); // NOI18N
-        serviceDate14.setForeground(new java.awt.Color(141, 141, 141));
-        serviceDate14.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        serviceDate14.setText("<html>Descripcion</html>");
-        serviceDate14.setToolTipText("");
-        serviceDate14.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        jPanel6.add(serviceDate14, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 90, 180, 80));
+        activityDetails.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 14)); // NOI18N
+        activityDetails.setForeground(new java.awt.Color(141, 141, 141));
+        activityDetails.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        activityDetails.setText("<html>Descripcion</html>");
+        activityDetails.setToolTipText("");
+        activityDetails.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jPanel6.add(activityDetails, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 90, 180, 80));
 
-        serviceDate12.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 14)); // NOI18N
-        serviceDate12.setForeground(new java.awt.Color(141, 141, 141));
-        serviceDate12.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        serviceDate12.setText("<html>Descripcion</html>");
-        serviceDate12.setToolTipText("");
-        serviceDate12.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        jPanel6.add(serviceDate12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 180, 80));
+        activityDescription.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 14)); // NOI18N
+        activityDescription.setForeground(new java.awt.Color(141, 141, 141));
+        activityDescription.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        activityDescription.setText("<html>Descripcion</html>");
+        activityDescription.setToolTipText("");
+        activityDescription.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jPanel6.add(activityDescription, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 180, 80));
 
         serviceName17.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         serviceName17.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 14)); // NOI18N
@@ -126,11 +152,11 @@ public class ServiceDetailsPanel extends javax.swing.JPanel {
         serviceName18.setText("Descripcion del lugar");
         jPanel6.add(serviceName18, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 60, -1, 20));
 
-        serviceDate11.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 14)); // NOI18N
-        serviceDate11.setForeground(new java.awt.Color(141, 141, 141));
-        serviceDate11.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        serviceDate11.setText("Carrera xd");
-        jPanel6.add(serviceDate11, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 30, 210, 20));
+        activityAdress.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 14)); // NOI18N
+        activityAdress.setForeground(new java.awt.Color(141, 141, 141));
+        activityAdress.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        activityAdress.setText("Carrera xd");
+        jPanel6.add(activityAdress, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 30, 210, 20));
 
         serviceName7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         serviceName7.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 14)); // NOI18N
@@ -159,18 +185,18 @@ public class ServiceDetailsPanel extends javax.swing.JPanel {
         jPanel2.setPreferredSize(new java.awt.Dimension(340, 246));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        serviceName.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        serviceName.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 16)); // NOI18N
-        serviceName.setForeground(new java.awt.Color(52, 53, 61));
-        serviceName.setText("Detalles del servicio");
-        jPanel2.add(serviceName, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, 20));
+        dtails.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        dtails.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 16)); // NOI18N
+        dtails.setForeground(new java.awt.Color(52, 53, 61));
+        dtails.setText("Detalles del servicio");
+        jPanel2.add(dtails, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, 20));
 
-        serviceDate.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 14)); // NOI18N
-        serviceDate.setForeground(new java.awt.Color(141, 141, 141));
-        serviceDate.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        serviceDate.setText("Moto");
-        serviceDate.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        jPanel2.add(serviceDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 90, 170, 20));
+        deliverVehicle.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 14)); // NOI18N
+        deliverVehicle.setForeground(new java.awt.Color(141, 141, 141));
+        deliverVehicle.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        deliverVehicle.setText("deliverVehicle");
+        deliverVehicle.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+        jPanel2.add(deliverVehicle, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 90, 170, 20));
 
         serviceName5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         serviceName5.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 14)); // NOI18N
@@ -184,44 +210,25 @@ public class ServiceDetailsPanel extends javax.swing.JPanel {
         serviceName14.setText("Ayudante asignado");
         jPanel2.add(serviceName14, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, 20));
 
-        serviceDate9.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 14)); // NOI18N
-        serviceDate9.setForeground(new java.awt.Color(141, 141, 141));
-        serviceDate9.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        serviceDate9.setText("Julano perez");
-        serviceDate9.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        jPanel2.add(serviceDate9, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 60, 170, 20));
+        deliverName.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 14)); // NOI18N
+        deliverName.setForeground(new java.awt.Color(141, 141, 141));
+        deliverName.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        deliverName.setText("Julano perez");
+        deliverName.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+        jPanel2.add(deliverName, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 60, 170, 20));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 220, 440, 140));
-
-        cancelServiceButton.setBackground(new java.awt.Color(242, 46, 62));
-        cancelServiceButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(8, 8, 8, 8));
-        cancelServiceButton.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel3.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 12)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/customer/services/close.png"))); // NOI18N
-        jLabel3.setText("Cancelar");
-        cancelServiceButton.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, -1, -1));
-
-        jPanel1.add(cancelServiceButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 720, 220, 40));
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(233, 233, 233), 2, true));
         jPanel4.setPreferredSize(new java.awt.Dimension(340, 246));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        serviceName1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        serviceName1.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 16)); // NOI18N
-        serviceName1.setForeground(new java.awt.Color(52, 53, 61));
-        serviceName1.setText("Nombre servicio");
-        jPanel4.add(serviceName1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, -1, 20));
-
-        serviceDate1.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 14)); // NOI18N
-        serviceDate1.setForeground(new java.awt.Color(141, 141, 141));
-        serviceDate1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        serviceDate1.setText("20:40");
-        serviceDate1.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        jPanel4.add(serviceDate1, new org.netbeans.lib.awtextra.AbsoluteConstraints(114, 260, 200, 20));
+        serviceName.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        serviceName.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 16)); // NOI18N
+        serviceName.setForeground(new java.awt.Color(52, 53, 61));
+        serviceName.setText("Nombre servicio");
+        jPanel4.add(serviceName, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, -1, 20));
 
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -233,19 +240,8 @@ public class ServiceDetailsPanel extends javax.swing.JPanel {
         serviceName8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         serviceName8.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 14)); // NOI18N
         serviceName8.setForeground(new java.awt.Color(52, 53, 61));
-        serviceName8.setText("Tiempo transcurrido");
+        serviceName8.setText("Fecha solicitud");
         jPanel4.add(serviceName8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, -1, 20));
-
-        serviceName9.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        serviceName9.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 14)); // NOI18N
-        serviceName9.setForeground(new java.awt.Color(52, 53, 61));
-        serviceName9.setText("Hora solicitud");
-        jPanel4.add(serviceName9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, -1, 20));
-
-        serviceDate4.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 14)); // NOI18N
-        serviceDate4.setForeground(new java.awt.Color(141, 141, 141));
-        serviceDate4.setText("1 hora y 24 minutos");
-        jPanel4.add(serviceDate4, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 230, -1, 20));
 
         serviceName10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         serviceName10.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 14)); // NOI18N
@@ -253,11 +249,11 @@ public class ServiceDetailsPanel extends javax.swing.JPanel {
         serviceName10.setText("Pedido por");
         jPanel4.add(serviceName10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, -1, 20));
 
-        serviceDate6.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 14)); // NOI18N
-        serviceDate6.setForeground(new java.awt.Color(141, 141, 141));
-        serviceDate6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        serviceDate6.setText("Pepito perez");
-        jPanel4.add(serviceDate6, new org.netbeans.lib.awtextra.AbsoluteConstraints(116, 290, 200, 20));
+        servicePrice.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 14)); // NOI18N
+        servicePrice.setForeground(new java.awt.Color(141, 141, 141));
+        servicePrice.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        servicePrice.setText("Pepito perez");
+        jPanel4.add(servicePrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 290, 200, 20));
 
         serviceName11.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         serviceName11.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 14)); // NOI18N
@@ -265,17 +261,35 @@ public class ServiceDetailsPanel extends javax.swing.JPanel {
         serviceName11.setText("Medio de pago");
         jPanel4.add(serviceName11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, -1, 20));
 
-        serviceDate7.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 14)); // NOI18N
-        serviceDate7.setForeground(new java.awt.Color(141, 141, 141));
-        serviceDate7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        serviceDate7.setText("Efectivo");
-        jPanel4.add(serviceDate7, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 320, 180, 20));
+        servicePaymethod.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 14)); // NOI18N
+        servicePaymethod.setForeground(new java.awt.Color(141, 141, 141));
+        servicePaymethod.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        servicePaymethod.setText("Efectivo");
+        jPanel4.add(servicePaymethod, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 320, 180, 20));
 
-        jCheckBox2.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 14)); // NOI18N
-        jCheckBox2.setForeground(new java.awt.Color(52, 53, 61));
-        jCheckBox2.setText("Retorno");
-        jCheckBox2.setEnabled(false);
-        jPanel4.add(jCheckBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, -1, 20));
+        serviceReturn.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 14)); // NOI18N
+        serviceReturn.setForeground(new java.awt.Color(52, 53, 61));
+        serviceReturn.setText("Retorno");
+        serviceReturn.setEnabled(false);
+        jPanel4.add(serviceReturn, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, -1, 20));
+
+        serviceName9.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        serviceName9.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 14)); // NOI18N
+        serviceName9.setForeground(new java.awt.Color(52, 53, 61));
+        serviceName9.setText("Valor");
+        jPanel4.add(serviceName9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, -1, 20));
+
+        serviceDate.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 14)); // NOI18N
+        serviceDate.setForeground(new java.awt.Color(141, 141, 141));
+        serviceDate.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        serviceDate.setText("Pepito perez");
+        jPanel4.add(serviceDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 230, 200, 20));
+
+        servicePrice1.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 14)); // NOI18N
+        servicePrice1.setForeground(new java.awt.Color(141, 141, 141));
+        servicePrice1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        servicePrice1.setText("Pepito perez");
+        jPanel4.add(servicePrice1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 260, 200, 20));
 
         jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 240, 340, 400));
 
@@ -283,15 +297,18 @@ public class ServiceDetailsPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MousePressed
-        subject.notificarObservadores(null);
+        subject.notificarObservadores(null, null);
     }//GEN-LAST:event_jLabel1MousePressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel cancelServiceButton;
-    private javax.swing.JCheckBox jCheckBox2;
+    private javax.swing.JLabel activityAdress;
+    private javax.swing.JLabel activityDescription;
+    private javax.swing.JLabel activityDetails;
+    private javax.swing.JLabel deliverName;
+    private javax.swing.JLabel deliverVehicle;
+    private java.awt.Label dtails;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -300,16 +317,7 @@ public class ServiceDetailsPanel extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JLabel serviceDate;
-    private javax.swing.JLabel serviceDate1;
-    private javax.swing.JLabel serviceDate11;
-    private javax.swing.JLabel serviceDate12;
-    private javax.swing.JLabel serviceDate14;
-    private javax.swing.JLabel serviceDate4;
-    private javax.swing.JLabel serviceDate6;
-    private javax.swing.JLabel serviceDate7;
-    private javax.swing.JLabel serviceDate9;
     private java.awt.Label serviceName;
-    private java.awt.Label serviceName1;
     private java.awt.Label serviceName10;
     private java.awt.Label serviceName11;
     private java.awt.Label serviceName14;
@@ -321,5 +329,9 @@ public class ServiceDetailsPanel extends javax.swing.JPanel {
     private java.awt.Label serviceName7;
     private java.awt.Label serviceName8;
     private java.awt.Label serviceName9;
+    private javax.swing.JLabel servicePaymethod;
+    private javax.swing.JLabel servicePrice;
+    private javax.swing.JLabel servicePrice1;
+    private javax.swing.JCheckBox serviceReturn;
     // End of variables declaration//GEN-END:variables
 }

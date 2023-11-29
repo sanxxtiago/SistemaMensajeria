@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import modelo.Actividad;
 import modelo.Servicio;
 import util.RHException;
 import util.ServiceLocator;
@@ -97,7 +98,7 @@ public class ServicioDAO {
 
         try {
             // Consulta SQL para seleccionar servicios por ID de cliente
-            String strSQL = "SELECT * FROM public.servicio WHERE k_idcliente = ?";
+            String strSQL = "SELECT * FROM servicio INNER JOIN actividad ON actividad.k_idservicio = servicio.k_idservicio WHERE k_idcliente = ?;";
             
             // Obtener la conexión desde el ServiceLocator
             Connection conexion = ServiceLocator.getInstance().tomarConexion();
@@ -112,6 +113,7 @@ public class ServicioDAO {
             // Itera sobre los resultados y los "convierte" a objetos Servicio
             while (rs.next()) {
                 Servicio servicio = new Servicio();
+                Actividad actividad = new Actividad();
                 servicio.setIdServicio(rs.getInt("k_idservicio"));
                 servicio.setTipoIdCliente(rs.getString("k_tipoidcliente"));
                 servicio.setIdCliente(rs.getInt("k_idcliente"));
@@ -122,6 +124,11 @@ public class ServicioDAO {
                 servicio.setTipoPaquete(rs.getString("i_tipopaquete"));
                 servicio.setF_solicitud(rs.getDate("f_solicitud").toString());
                 servicio.setEstado(rs.getString("i_estado"));
+
+                actividad.setDireccion(rs.getString("n_direccion"));
+                actividad.setDetallesDireccion(rs.getString("n_detallesdireccion"));
+                actividad.setDescripcionActividad(rs.getString("n_descripcionactividad"));
+                servicio.setActividad(actividad);
 
                 servicios.add(servicio);
             }

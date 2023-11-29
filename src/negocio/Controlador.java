@@ -47,7 +47,6 @@ public class Controlador {//Clase que permite controlar la app.
 
     // Método para consultar un mensajero por ID
     public Mensajero consultarMensajeroPorId(int idMensajero) throws RHException {
-        /* System.out.println("1.2.1"); */
         return mensajeroDAO.consultarMensajeroPorId(idMensajero);
     }
 }

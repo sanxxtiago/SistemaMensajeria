@@ -4,23 +4,19 @@
  */
 package vista.customer.services;
 
-import java.awt.BorderLayout;
-import java.awt.Container;
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import modelo.Mensajero;
 import modelo.Servicio;
 import negocio.Controlador;
-import utils.Constants;
-import vista.customer.Customer;
+import utils.Subject;
 
 /**
  *
@@ -29,7 +25,7 @@ import vista.customer.Customer;
 public class ServicesListPanel extends javax.swing.JPanel {
 
     Controlador controlador = new Controlador();
-    private JTable tabla;
+    public Subject subject = new Subject();
     private JButton botonFuncion;
     /**
      * Creates new form ServicesListPanel
@@ -45,89 +41,64 @@ public class ServicesListPanel extends javax.swing.JPanel {
         else return "Envío de paquetes";
     }
     
-    public int[] getServicePanelCords (int index) {
-        int espacioEntreComponentes = 50;
-        int componentesPorFila = 2;
-
-        int fila = index / componentesPorFila;
-        int columna = index % componentesPorFila;
-
-        int x = columna * (Constants.getItemXSize() + espacioEntreComponentes);
-        int y = fila * (Constants.getItemYSize() + espacioEntreComponentes);
-
-        return new int[]{x, y};
+    private class ButtonRenderer extends DefaultTableCellRenderer {
+        @Override
+        public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+            if (value instanceof JButton) {
+                return (JButton) value;
+            }
+            return super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+        }
     }
     
     public void displayServices() {
         try{
             List<Servicio> services = controlador.consultarServiciosPorIdCliente(456789123);
+            System.out.println(services.get(0).getActividad().getDireccion());
+            List<Mensajero> mensajeros = new ArrayList<>();
             
              // Crear la tabla con un modelo de datos
-            String[] columnas = {"Id", "Tipo servicio", "Precio", "Fecha solicitud", "Mensajero"};
-            Object[][] filas = new Object[services.size()][5];
+            String[] columnas = {"Id", "Tipo servicio", "Precio", "Fecha solicitud", "Mensajero", "Ver detalles"};
+            Object[][] filas = new Object[services.size()][6];
 
             for (int i = 0; i < services.size(); i++) {
-                Mensajero mensajero = controlador.consultarMensajeroPorId(services.get(i).getIdMensajero());
+                mensajeros.add(controlador.consultarMensajeroPorId(services.get(i).getIdMensajero()));
+                
+                botonFuncion = new JButton("Realizar Función");
                 
                 filas[i][0] = services.get(i).getIdServicio();
                 filas[i][1] = getTipoServicio(services.get(i).getTipoPaquete());
                 filas[i][2] = services.get(i).getCosto();
                 filas[i][3] = services.get(i).getF_solicitud();
-                filas[i][4] = mensajero.getNombre() + " " + mensajero.getApellido();
-                System.out.println(services.get(i).getIdServicio());
+                filas[i][4] = mensajeros.get(i).getNombre() + " " + mensajeros.get(i).getApellido();
+                filas[i][5] = botonFuncion;
             }
 
-            DefaultTableModel modelo = new DefaultTableModel(filas, columnas);
-            tabla = new JTable(modelo);
-
-            // Añadir la tabla a un JScrollPane para que sea desplazable
-            JScrollPane scrollPane = new JScrollPane(tabla);
-
-            // Crear el botón
-            botonFuncion = new JButton("Realizar Función");
-
-            // Añadir un ActionListener al botón para manejar eventos
-            botonFuncion.addActionListener(new ActionListener() {
+            DefaultTableModel modelo = new DefaultTableModel(filas, columnas){
                 @Override
-                public void actionPerformed(ActionEvent e) {
-                    // Obtener la fila seleccionada
-                    int filaSeleccionada = tabla.getSelectedRow();
-
-                    // Verificar si se seleccionó alguna fila
-                    if (filaSeleccionada != -1) {
-                        // Obtener el objeto Datos correspondiente a la fila seleccionada
-                        Servicio datoSeleccionado = services.get(filaSeleccionada);
-
-                        // Realizar la función asociada al objeto Datos
-                        
+                public boolean isCellEditable(int row, int column) {
+                    // Hacer que todas las celdas sean no editables
+                    
+                    return false;
+                }
+            };            
+            tableServices.setDefaultRenderer(Object.class, new ButtonRenderer());
+            tableServices.addMouseListener(new java.awt.event.MouseAdapter() {
+                @Override
+                public void mousePressed(java.awt.event.MouseEvent evt) {
+                    int col = tableServices.columnAtPoint(evt.getPoint());
+                    if (col == 5) {
+                        subject.notificarObservadores(services.get(tableServices.getSelectedRow()), mensajeros.get(tableServices.getSelectedRow()));
                     }
+                    
                 }
             });
-
-            // Crear un contenedor para organizar los componentes
-
-            // Añadir la tabla y el botón al contenedor
-            serviceListContainer.removeAll();
-            serviceListContainer.add(scrollPane, BorderLayout.CENTER);
-            serviceListContainer.add(botonFuncion, BorderLayout.SOUTH);
-            serviceListContainer.revalidate();
-            serviceListContainer.repaint();
+            tableServices.setModel(modelo);
+            tableServices.repaint();
         
         } catch(Exception e) {
             System.out.println(e);
         }
-
-       
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
     }
 
     /**
@@ -142,6 +113,8 @@ public class ServicesListPanel extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         serviceListContainer = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tableServices = new javax.swing.JTable();
 
         setPreferredSize(new java.awt.Dimension(1440, 950));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -156,17 +129,31 @@ public class ServicesListPanel extends javax.swing.JPanel {
 
         serviceListContainer.setBackground(new java.awt.Color(255, 255, 255));
         serviceListContainer.setAutoscrolls(true);
+        serviceListContainer.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout serviceListContainerLayout = new javax.swing.GroupLayout(serviceListContainer);
-        serviceListContainer.setLayout(serviceListContainerLayout);
-        serviceListContainerLayout.setHorizontalGroup(
-            serviceListContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 850, Short.MAX_VALUE)
-        );
-        serviceListContainerLayout.setVerticalGroup(
-            serviceListContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 660, Short.MAX_VALUE)
-        );
+        tableServices.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "Id", "Tipo de paquete", "Costo", "Fecha de solicitud", "Mensajero", "Ver detalles"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tableServices.setRowHeight(40);
+        jScrollPane1.setViewportView(tableServices);
+
+        serviceListContainer.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 770, 650));
 
         jPanel1.add(serviceListContainer, new org.netbeans.lib.awtextra.AbsoluteConstraints(295, 147, 850, 660));
 
@@ -177,6 +164,8 @@ public class ServicesListPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel serviceListContainer;
+    private javax.swing.JTable tableServices;
     // End of variables declaration//GEN-END:variables
 }

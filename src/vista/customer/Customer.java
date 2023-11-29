@@ -4,9 +4,10 @@
  */
 package vista.customer;
 
-import javax.swing.JButton;
+
+import java.security.Provider.Service;
 import javax.swing.JPanel;
-import javax.swing.JTable;
+import modelo.Mensajero;
 import modelo.Servicio;
 import utils.Observer;
 import utils.Constants;
@@ -18,18 +19,19 @@ import vista.customer.services.ServicesListPanel;
  * @author dsola
  */
 public final class Customer extends javax.swing.JFrame implements Observer {
+
+    private static Customer instance;
     
-    private static final Customer instance = new Customer();
     private ServicesListPanel servicesList = new ServicesListPanel();
-    
-    
-    public static  Customer getInstance() {
-        return instance;
-    }
     
     public Customer() {
         initComponents();
+        servicesList.subject.agregarObservador(this);
         displayPanel(servicesList);
+    }
+    
+    public static Customer getInstance() {
+        return instance;
     }
     
     public void displayPanel(JPanel panel) {
@@ -256,12 +258,12 @@ public final class Customer extends javax.swing.JFrame implements Observer {
     }
 
     @Override
-    public void actualizar(Servicio servicio) {
-        System.out.println(servicio.getIdServicio());
+    public void actualizar(Servicio servicio, Mensajero mensajero) {
         if(servicio == null){
             displayPanel(servicesList);
         } else {
-            ServiceDetailsPanel serviceDetailsPanel = new ServiceDetailsPanel(servicio);
+            ServiceDetailsPanel serviceDetailsPanel = new ServiceDetailsPanel(servicio, mensajero);
+            serviceDetailsPanel.subject.agregarObservador(this);
             displayPanel(serviceDetailsPanel);
         }
     }
