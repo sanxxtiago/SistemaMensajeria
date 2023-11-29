@@ -56,6 +56,7 @@ public class GestionClientes {
         return clienteDAO.consultarClientePorCorreo(correo);
     }
     
+    
     public List<Cliente> obtenerTodosLosClientes() throws RHException {
         return clienteDAO.obtenerTodosLosClientes();
     }

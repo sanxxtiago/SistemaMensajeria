@@ -46,6 +46,7 @@ public class ClienteDAO {
         }
     }
 
+    
      
     public void actualizarCliente(long id, long nuevoTelefono, String nuevoCorreo) throws RHException {
         try {

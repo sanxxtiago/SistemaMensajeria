@@ -15,14 +15,16 @@ public class Controlador {//Clase que permite controlar la app.
     //Metodo para registrar un cliente dados sus datos.
     public void registroCliente(String tipoID, int idCliente, String nombre, String apellido, int telefono, String correo, String password) throws RHException{  
         cliente = new Cliente();
-        cliente.setTipoID(tipoID);
+        cliente.setTipoId(tipoID);
         cliente.setIdCliente(idCliente);
         cliente.setNombre(nombre);   
         cliente.setApellido(apellido);  
         cliente.setTelefono(telefono); 
         cliente.setCorreo(correo);
-        cliente.setPassword(password);
+        cliente.setContrasena(password);
 
         clienteDAO.registroCliente(cliente);
     }
+    
+    
 }

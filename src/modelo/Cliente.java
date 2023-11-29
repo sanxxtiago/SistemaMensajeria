@@ -22,7 +22,8 @@ public class Cliente {
         // Default constructor
     }
 
-    // Getters and Setters
+    
+// Getters and Setters
     public String getTipoId() {
         return tipoId;
     }
