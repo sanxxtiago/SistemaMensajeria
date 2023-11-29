@@ -18,6 +18,7 @@ public class LoginController {
         try {
             Cliente cliente = gestionClientes.consultarClientePorCorreo(email);
             if (cliente != null && cliente.getPassword().equals(password)) {
+                System.out.println(cliente.getIdCliente());
                 ClienteMain clienteMain = new ClienteMain(cliente);
                 clienteMain.setVisible(true);
                 return true; // Client login successful

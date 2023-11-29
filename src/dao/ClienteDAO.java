@@ -97,13 +97,14 @@ public class ClienteDAO {
 
     public Cliente consultarClientePorCorreo(String correo) throws RHException {
         try {
-            String strSQL = "SELECT n_nombre, n_correo, n_contrasena FROM cliente WHERE n_correo = ?";
+            String strSQL = "SELECT n_nombre, n_correo, n_contrasena, k_idcliente FROM cliente WHERE n_correo = ?";
             Connection conexion = ServiceLocator.getInstance().tomarConexion();
             PreparedStatement prepStmt = conexion.prepareStatement(strSQL);
             prepStmt.setString(1, correo);
             ResultSet rs = prepStmt.executeQuery();
             if (rs.next()) {
                 Cliente cliente = new Cliente();
+                cliente.setIdCliente(rs.getInt("k_idcliente"));
                 cliente.setNombre(rs.getString("n_nombre"));
                 cliente.setCorreo(rs.getString("n_correo"));
                 cliente.setPassword(rs.getString("n_contrasena"));
