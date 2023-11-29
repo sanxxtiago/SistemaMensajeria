@@ -4,7 +4,11 @@
  */
 package vista.customer.services;
 
+import modelo.Mensajero;
+import modelo.Servicio;
+import negocio.Controlador;
 import utils.Subject;
+import utils.TextTransform;
 
 /**
  *
@@ -13,32 +17,36 @@ import utils.Subject;
 public class ServiceItemDetailsPanel extends javax.swing.JPanel {
     
     public Subject subject = new Subject();
-
-    private String serviceId;
-    private String serviceName;
-    private String servicePrice; 
-    private String serviceDuration;
-    private String serviceDeliver;
+    private Mensajero mensajero;
+    private Servicio servicio;
+    private Controlador controlador;
     /**
      * Creates new form serviceItemDetailsPanel
      */
      
     public void displayServiceData() {
-        serviceNameLabel.setText(this.serviceName);
-        servicePriceLabel.setText(this.servicePrice);
-        serviceDateLabel.setText(this.serviceDuration);
-        serviceDeliverLabel.setText(this.serviceDeliver);
+        serviceNameLabel.setText(String.valueOf(this.servicio.getIdServicio()));
+        servicePriceLabel.setText(String.valueOf(this.servicio.getCosto()));
+        serviceDateLabel.setText(TextTransform.getTimeElapsed(this.servicio.getF_solicitud()));
+        serviceDeliverLabel.setText(this.mensajero.getNombre());
     }
 
-    public ServiceItemDetailsPanel(String serviceId, String serviceName, String servicePrice, String serviceDuration, String serviceDeliver) {
+    public ServiceItemDetailsPanel(Servicio servicio) {
         initComponents();
-        this.serviceId = serviceId;
-        this.serviceName = serviceName;
-        this.servicePrice = servicePrice;
-        this.serviceDuration = serviceDuration;
-        this.serviceDeliver = serviceDeliver;
+        this.servicio = servicio;
+        
+        getMensajero();
         
         displayServiceData();
+    }
+    
+    public void getMensajero() {
+        try{
+            Mensajero mensajero = controlador.consultarMensajeroPorId(this.servicio.getIdMensajero());
+            this.mensajero = mensajero;
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
 
     /**
@@ -204,11 +212,11 @@ public class ServiceItemDetailsPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jLabel1MouseClicked
 
     private void detailsServiceButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_detailsServiceButtonMousePressed
-        this.subject.notificarObservadores(this.serviceId);
+        this.subject.notificarObservadores(this.servicio);
     }//GEN-LAST:event_detailsServiceButtonMousePressed
 
     private void jLabel1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MousePressed
-        this.subject.notificarObservadores(this.serviceId);
+        this.subject.notificarObservadores(this.servicio);
     }//GEN-LAST:event_jLabel1MousePressed
 
 

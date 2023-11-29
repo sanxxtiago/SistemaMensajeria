@@ -48,9 +48,9 @@ public class ServiceLocator {//Clase que permite manejar las conecciones.
 	private ServiceLocator() throws Exception {
                 try {
                     // Se registra el Driver y se crea la conexion
-                    String url = "jdbc:postgresql://localhost:5432/SistemaMensajeria";
+                    String url = "jdbc:postgresql://localhost:5432/projectFBD";
                     String usuario = "postgres";
-                    String password = "Lau.cubillos1234"; //Debe reemplazarse por el password en su propia instalación
+                    String password = "password"; //Debe reemplazarse por el password en su propia instalación
                     Class.forName("org.postgresql.Driver");
                     conexion = DriverManager.getConnection(url, usuario, password);
                     conexion.setAutoCommit(false);
@@ -142,3 +142,4 @@ public class ServiceLocator {//Clase que permite manejar las conecciones.
 	}
 
 }
+

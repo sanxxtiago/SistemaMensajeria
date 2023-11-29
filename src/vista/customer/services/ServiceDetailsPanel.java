@@ -4,6 +4,7 @@
  */
 package vista.customer.services;
 
+import modelo.Servicio;
 import utils.Subject;
 import vista.customer.Customer;
 
@@ -15,13 +16,13 @@ public class ServiceDetailsPanel extends javax.swing.JPanel {
     
     public Subject subject = new Subject();
 
-    private String id;
+    private Servicio servicio;
     /**
      * Creates new form serviceDetailsPanel
      */
-    public ServiceDetailsPanel(String id) {
-        this.id = id;
-        System.out.println(id);
+    public ServiceDetailsPanel(Servicio servicio) {
+        this.servicio = servicio;
+        System.out.println(servicio.getIdServicio());
         Customer customer = Customer.getInstance();
         subject.agregarObservador(customer);
         initComponents();
@@ -282,7 +283,7 @@ public class ServiceDetailsPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MousePressed
-        subject.notificarObservadores("0");
+        subject.notificarObservadores(null);
     }//GEN-LAST:event_jLabel1MousePressed
 
 

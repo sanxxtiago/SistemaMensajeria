@@ -41,4 +41,6 @@ public class ClienteDAO {
             ServiceLocator.getInstance().liberarConexion();
         }
     }
+
+
 }

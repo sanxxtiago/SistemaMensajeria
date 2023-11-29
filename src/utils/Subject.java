@@ -6,6 +6,7 @@ package utils;
 
 import java.util.ArrayList;
 import java.util.List;
+import modelo.Servicio;
 /**
  *
  * @author dsola
@@ -21,9 +22,9 @@ public class Subject {
     }
 
     // Método para notificar a todos los observadores
-    public void notificarObservadores(String id) {
+    public void notificarObservadores(Servicio servicio) {
         for (Observer observador : observadores) {
-            observador.actualizar(id);
+            observador.actualizar(servicio);
         }
     }
 

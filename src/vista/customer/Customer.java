@@ -5,6 +5,7 @@
 package vista.customer;
 
 import javax.swing.JPanel;
+import modelo.Servicio;
 import utils.Observer;
 import utils.Constants;
 import vista.customer.services.ServiceDetailsPanel;
@@ -251,11 +252,11 @@ public final class Customer extends javax.swing.JFrame implements Observer {
     }
 
     @Override
-    public void actualizar(String id) {
-        if(id.equals("0")){
+    public void actualizar(Servicio servicio) {
+        if(servicio == null){
             displayPanel(servicesList);
         } else {
-            ServiceDetailsPanel serviceDetailsPanel = new ServiceDetailsPanel(id);
+            ServiceDetailsPanel serviceDetailsPanel = new ServiceDetailsPanel(servicio);
             displayPanel(serviceDetailsPanel);
         }
     }

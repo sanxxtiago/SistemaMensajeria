@@ -4,11 +4,13 @@
  */
 package utils;
 
+import modelo.Servicio;
+
 /**
  *
  * @author dsola
  */
 public interface Observer {
-    void actualizar(String id);
+    void actualizar(Servicio servicio);
     
 }

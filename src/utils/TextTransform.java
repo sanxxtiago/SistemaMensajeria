@@ -6,11 +6,22 @@ package utils;
 
 import java.time.Duration;
 import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  *
  * @author dsola
  */
 public class TextTransform {
-    
+     public static String getTimeElapsed(String fecha) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
+        LocalDateTime ahora = LocalDateTime.now();
+        Duration duracion = Duration.between(LocalDateTime.parse(fecha, formatter), ahora);
+
+        long horas = duracion.toHours();
+        long minutos = duracion.toMinutes() % 60;
+
+        return String.format("%d horas y %d minutos", horas, minutos);
+    }
 }

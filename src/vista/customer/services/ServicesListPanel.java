@@ -4,6 +4,9 @@
  */
 package vista.customer.services;
 
+import java.util.List;
+import modelo.Servicio;
+import negocio.Controlador;
 import utils.Constants;
 import vista.customer.Customer;
 
@@ -13,6 +16,7 @@ import vista.customer.Customer;
  */
 public class ServicesListPanel extends javax.swing.JPanel {
 
+    Controlador controlador = new Controlador();
     /**
      * Creates new form ServicesListPanel
      */
@@ -37,20 +41,29 @@ public class ServicesListPanel extends javax.swing.JPanel {
     }
     
     public ServiceItemDetailsPanel[] getServicesPanels () {
-        ServiceItemDetailsPanel[] services = new ServiceItemDetailsPanel[4];
-        Customer indexClass = Customer.getInstance();
+        try{
+            List<Servicio> services = controlador.consultarServiciosPorIdCliente(456789123);
+            ServiceItemDetailsPanel servicesPanels[] = new ServiceItemDetailsPanel[services.size()];
+        
+            Customer indexClass = Customer.getInstance();
 
-        for(var index = 0; index < services.length ; index++) {
-            int[] coords = getServicePanelCords(index);
-            services[index] = new ServiceItemDetailsPanel("1", "Pago recibo", "$25.000", "1 Hora", "Paco");
-            services[index].setSize(Constants.getItemXSize(), Constants.getItemYSize());
-            services[index].setLocation(coords[0], coords[1]);
-            serviceListContainer.add(services[index]);
-            
-            services[index].subject.agregarObservador(indexClass);
+            for(var index = 0; index < services.size() ; index++) {
+                int[] coords = getServicePanelCords(index);
+                
+                servicesPanels[index] = new ServiceItemDetailsPanel(services.get(index));
+                servicesPanels[index].setSize(Constants.getItemXSize(), Constants.getItemYSize());
+                servicesPanels[index].setLocation(coords[0], coords[1]);
+                serviceListContainer.add(servicesPanels[index]);
+
+                servicesPanels[index].subject.agregarObservador(indexClass);
+            }
+
+            return servicesPanels;
+        }catch(Exception e) {
+            System.out.println(e);
         }
         
-        return services;
+        return null;
     }
     
     public void displayServices() {
