@@ -4,7 +4,7 @@ public class RHException extends Exception {
       private String detalle;
       private String clase;
       /**
-       * Metodo constructor que recoge la descripción del 
+       * M�todo constructor que recoge la descripción del 
        * error que genero la excepción.
        * 
        * @param error

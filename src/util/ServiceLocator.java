@@ -9,7 +9,7 @@ import java.sql.SQLException;
  * Recursos Humanos
  * @author Alba Consuelo Nieto
  */
-public class ServiceLocator {//Clase que permite manejar las conecciones.
+public class ServiceLocator {
 
 	/**
 	 * Instancia del ServiceLocator
@@ -48,10 +48,10 @@ public class ServiceLocator {//Clase que permite manejar las conecciones.
 	private ServiceLocator() throws Exception {
                 try {
                     // Se registra el Driver y se crea la conexion
-                    String url = "jdbc:postgresql://localhost:5432/SistemaMensajeria";
+                    String url = "jdbc:postgresql://localhost:5433/db_mensajeria";
                     String usuario = "postgres";
-                    String password = "Lau.cubillos1234"; //Debe reemplazarse por el password en su propia instalación
-                    Class.forName("org.postgresql.Driver");
+                    String password = "1234"; //Debe reemplazarse por el password en su propia instalación
+                    Class.forName("org.postgresql.Driver").newInstance();
                     conexion = DriverManager.getConnection(url, usuario, password);
                     conexion.setAutoCommit(false);
                 } catch (Exception e) {
@@ -142,4 +142,3 @@ public class ServiceLocator {//Clase que permite manejar las conecciones.
 	}
 
 }
-
