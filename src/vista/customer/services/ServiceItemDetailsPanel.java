@@ -25,10 +25,11 @@ public class ServiceItemDetailsPanel extends javax.swing.JPanel {
      */
      
     public void displayServiceData() {
-        serviceNameLabel.setText(String.valueOf(getTipoServicio(this.servicio.getTipoPaquete())));
+        serviceNameLabel.setText(getTipoServicio(this.servicio.getTipoPaquete()));
         servicePriceLabel.setText(String.valueOf(this.servicio.getCosto()));
         serviceDateLabel.setText(this.servicio.getF_solicitud());
-        serviceDeliverLabel.setText(this.mensajero.getNombre());
+        serviceDeliverLabel.setText(this.mensajero.getNombre() + " " + this.mensajero.getApellido());
+        System.out.println(this.mensajero.getNombre() + " " + this.mensajero.getApellido() + this.mensajero.getSexo());
     }
     
     public String getTipoServicio(String tipo){
@@ -47,6 +48,9 @@ public class ServiceItemDetailsPanel extends javax.swing.JPanel {
     public void getMensajero() {
         try{
             Mensajero mensajero = controlador.consultarMensajeroPorId(this.servicio.getIdMensajero());
+            /* Mensajero mensajero = new Mensajero();
+            mensajero.setNombre("carlos");
+            mensajero.setApellido("gomez"); */
             this.mensajero = mensajero;
             displayServiceData();
         } catch (Exception e) {

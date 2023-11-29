@@ -41,9 +41,33 @@ public class ServicesListPanel extends javax.swing.JPanel {
         return new int[]{x, y};
     }
     
-    public ServiceItemDetailsPanel[] getServicesPanels () {
+    public void getServicesPanels () {
         try{
             List<Servicio> services = controlador.consultarServiciosPorIdCliente(456789123);
+            
+            
+            
+            /* List<Servicio> services = new ArrayList<>();
+            
+            Servicio servicio = new Servicio();
+            servicio.setIdServicio(423423423);
+            servicio.setTipoIdCliente("k_tipoidcliente");
+            servicio.setIdCliente(43534534);
+            servicio.setTipoIdMensajero("k_tipoidmensajero");
+            servicio.setIdMensajero(123456789);
+            servicio.setCodigoPostal(423423);
+            servicio.setCosto(14000);
+            servicio.setTipoPaquete("i_tipopaquete");
+            servicio.setF_solicitud("f_solicitud");
+            servicio.setEstado("i_estado");
+            
+            services.add(servicio);
+            services.add(servicio);
+            services.add(servicio);
+            services.add(servicio); */
+            
+            
+            
             ServiceItemDetailsPanel servicesPanels[] = new ServiceItemDetailsPanel[services.size()];
         
             Customer indexClass = Customer.getInstance();
@@ -52,24 +76,19 @@ public class ServicesListPanel extends javax.swing.JPanel {
             for(int index = 0; index < services.size() ; index++) {
 
                 int[] coords = getServicePanelCords(index);
-                
-                System.out.println(services.get(index).getIdServicio());
+                System.out.println(services.get(index).getF_solicitud());
 
                 servicesPanels[index] = new ServiceItemDetailsPanel(services.get(index));
                 servicesPanels[index].setSize(Constants.getItemXSize(), Constants.getItemYSize());
                 servicesPanels[index].setLocation(coords[0], coords[1]);
 
                 serviceListContainer.add(servicesPanels[index]);
-
+                
                 servicesPanels[index].subject.agregarObservador(indexClass);
             }
-
-            return servicesPanels;
         }catch(Exception e) {
             System.out.println(e);
         }
-        
-        return null;
     }
     
     public void displayServices() {

@@ -66,6 +66,16 @@ public class ServiceLocator {//Clase que permite manejar las conecciones.
      * @return da la conexion a la base de datos
      */
     public synchronized Connection tomarConexion() {
+        while (!conexionLibre) {
+                try {
+                  wait();
+                } catch (InterruptedException e) {
+                        e.printStackTrace();
+                }
+        }
+
+        conexionLibre = false;
+        notify();
         return conexion;
     }
 

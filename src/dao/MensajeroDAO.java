@@ -51,7 +51,7 @@ public class MensajeroDAO {
         /* System.out.println("1.2.2"); */
         try {
             // Consulta SQL para seleccionar un mensajero por su ID
-            String strSQL = "SELECT * FROM public.mensajero WHERE k_idmensajero = ?";
+            String strSQL = "SELECT * FROM mensajero WHERE k_idmensajero = ?";
             
             // Obtener la conexión desde el ServiceLocator
             Connection conexion = ServiceLocator.getInstance().tomarConexion();
@@ -85,6 +85,7 @@ public class MensajeroDAO {
 
         } catch (SQLException e) {
             // Excepción
+            System.out.println(e.getMessage());
             throw new RHException("MensajeroDAO", "Error al consultar el mensajero por ID: " + e.getMessage());
         } finally {
             // Realizar rollback en caso de excepción y liberar la conexión

@@ -129,13 +129,14 @@ public class ServicioDAO {
             rs.close();
             prepStmt.close();
             // Devolver la lista de servicios
-            return servicios;
             
         } catch (SQLException e) {
             throw new RHException("ServicioDAO", "Error al consultar servicios por ID de cliente: " + e.getMessage());
         } finally {
             ServiceLocator.getInstance().liberarConexion();
         }
+        
+        return servicios;
     }
     
 }
