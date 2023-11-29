@@ -154,7 +154,7 @@ public class ServicioDAO {
 
         try {
             // Consulta SQL para seleccionar servicios por ID de cliente
-            String strSQL = "SELECT * FROM servicio INNER JOIN actividad ON actividad.k_idservicio = servicio.k_idservicio WHERE k_idcliente = ?;";
+            String strSQL = "+ * FROM servicio INNER JOIN actividad ON actividad.k_idservicio = servicio.k_idservicio WHERE k_idcliente = ?;";
             
             // Obtener la conexión desde el ServiceLocator
             Connection conexion = ServiceLocator.getInstance().tomarConexion();

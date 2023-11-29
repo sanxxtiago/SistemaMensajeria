@@ -32,8 +32,6 @@ public class Conexion {
         //this.jdbcUrl = "jdbc:postgresql://localhost:5432/ProyectoPrueba";
         this.usuario = "fl0user";
         this.contrasenia = "LbcJs1Sx4mwa";
-        
-        
     }
 
     public void establecerConexion() {

@@ -62,16 +62,8 @@ public final class Customer extends javax.swing.JFrame implements Observer {
         navBar = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         options = new javax.swing.JPanel();
-        label1 = new java.awt.Label();
         jSeparator1 = new javax.swing.JSeparator();
-        label2 = new java.awt.Label();
         label3 = new java.awt.Label();
-        jPanel7 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
-        jPanel5 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
         content = new javax.swing.JPanel();
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
@@ -107,78 +99,20 @@ public final class Customer extends javax.swing.JFrame implements Observer {
         options.setBackground(new java.awt.Color(255, 255, 255));
         options.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        label1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        label1.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 18)); // NOI18N
-        label1.setForeground(new java.awt.Color(52, 53, 61));
-        label1.setText("Solicitar servicios");
-        options.add(label1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 14, -1, -1));
-
         jSeparator1.setBackground(new java.awt.Color(211, 211, 211));
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
         options.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(156, 0, -1, 57));
 
-        label2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        label2.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 18)); // NOI18N
-        label2.setForeground(new java.awt.Color(52, 53, 61));
-        label2.setText("Mis solicitudes");
-        options.add(label2, new org.netbeans.lib.awtextra.AbsoluteConstraints(176, 14, -1, -1));
-
         label3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         label3.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 18)); // NOI18N
         label3.setForeground(new java.awt.Color(52, 53, 61));
-        label3.setText("Historial");
+        label3.setText("Mis servicios");
         label3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 label3MousePressed(evt);
             }
         });
         options.add(label3, new org.netbeans.lib.awtextra.AbsoluteConstraints(317, 14, -1, 30));
-
-        jPanel7.setBackground(new java.awt.Color(224, 227, 253));
-        jPanel7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel7.setMaximumSize(new java.awt.Dimension(38, 38));
-        jPanel7.setPreferredSize(new java.awt.Dimension(38, 38));
-        jPanel7.setVerifyInputWhenFocusTarget(false);
-        jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/customer/menu/user-icon.png"))); // NOI18N
-        jLabel4.setMaximumSize(new java.awt.Dimension(38, 38));
-        jLabel4.setMinimumSize(new java.awt.Dimension(38, 38));
-        jLabel4.setPreferredSize(new java.awt.Dimension(38, 38));
-        jPanel7.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 20, 20));
-
-        options.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(472, 10, -1, -1));
-
-        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel5.setPreferredSize(new java.awt.Dimension(45, 45));
-        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel3.setBackground(new java.awt.Color(102, 119, 247));
-        jLabel3.setFont(new java.awt.Font("Lucida Sans", 0, 8)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("  0"); // NOI18N
-        jLabel3.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-        jLabel3.setIconTextGap(0);
-        jLabel3.setOpaque(true);
-        jLabel3.setPreferredSize(new java.awt.Dimension(15, 15));
-        jPanel5.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 0, 20, 20));
-
-        jPanel4.setBackground(new java.awt.Color(224, 227, 253));
-        jPanel4.setMaximumSize(new java.awt.Dimension(38, 38));
-        jPanel4.setPreferredSize(new java.awt.Dimension(38, 38));
-        jPanel4.setVerifyInputWhenFocusTarget(false);
-        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/customer/menu/bag-icon.png"))); // NOI18N
-        jLabel2.setMaximumSize(new java.awt.Dimension(38, 38));
-        jLabel2.setMinimumSize(new java.awt.Dimension(38, 38));
-        jLabel2.setPreferredSize(new java.awt.Dimension(38, 38));
-        jPanel4.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 8, 20, 20));
-
-        jPanel5.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, -1, -1));
-
-        options.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(407, 1, 53, 50));
 
         navBar.add(options, new org.netbeans.lib.awtextra.AbsoluteConstraints(812, 11, -1, -1));
 
@@ -275,17 +209,9 @@ public final class Customer extends javax.swing.JFrame implements Observer {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel content;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
     private javax.swing.JSeparator jSeparator1;
-    private java.awt.Label label1;
-    private java.awt.Label label2;
     private java.awt.Label label3;
     private javax.swing.JPanel navBar;
     private javax.swing.JPanel options;

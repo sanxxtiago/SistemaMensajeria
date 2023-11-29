@@ -32,11 +32,7 @@ public class ClienteMain extends javax.swing.JFrame {
     private void initComponents() {
 
         quickfavLogo = new javax.swing.JLabel();
-        buscarLabel = new javax.swing.JLabel();
-        solicitarButton = new javax.swing.JButton();
-        solicitudesButton = new javax.swing.JButton();
         historialButton = new javax.swing.JButton();
-        buscarInput = new javax.swing.JTextField();
         lineLabel = new javax.swing.JLabel();
         serviciosLabel = new javax.swing.JLabel();
         solicitarServiciosPanel = new javax.swing.JPanel();
@@ -50,23 +46,13 @@ public class ClienteMain extends javax.swing.JFrame {
         quickfavLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/img/quickfavlogo.png"))); // NOI18N
         getContentPane().add(quickfavLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
 
-        buscarLabel.setText("Buscar");
-        getContentPane().add(buscarLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 20, -1, -1));
-
-        solicitarButton.setText("Solicitar servicios");
-        getContentPane().add(solicitarButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 20, -1, -1));
-
-        solicitudesButton.setText("Mis solicitudes");
-        getContentPane().add(solicitudesButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 20, -1, -1));
-
-        historialButton.setText("Historial");
+        historialButton.setText("Mis servicios");
         historialButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 historialButtonMousePressed(evt);
             }
         });
         getContentPane().add(historialButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 20, -1, -1));
-        getContentPane().add(buscarInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 20, 80, -1));
 
         lineLabel.setForeground(new java.awt.Color(204, 204, 204));
         lineLabel.setText("_____________________________________________________________________________________________________________________________________________\n");
@@ -139,16 +125,12 @@ public class ClienteMain extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField buscarInput;
-    private javax.swing.JLabel buscarLabel;
     private javax.swing.JLabel container;
     private javax.swing.JButton historialButton;
     private javax.swing.JLabel lineLabel;
     private javax.swing.JLabel quickfavLogo;
     private javax.swing.JLabel serviciosContainer;
     private javax.swing.JLabel serviciosLabel;
-    private javax.swing.JButton solicitarButton;
     private javax.swing.JPanel solicitarServiciosPanel;
-    private javax.swing.JButton solicitudesButton;
     // End of variables declaration//GEN-END:variables
 }

@@ -42,9 +42,10 @@ public class Iniciosesion extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setFocusTraversalPolicyProvider(true);
         setMinimumSize(new java.awt.Dimension(1440, 1024));
-        setResizable(false);
 
+        jPanel1.setAutoscrolls(true);
         jPanel1.setMaximumSize(new java.awt.Dimension(395, 794));
         jPanel1.setMinimumSize(new java.awt.Dimension(395, 794));
         jPanel1.setPreferredSize(new java.awt.Dimension(395, 794));
@@ -136,7 +137,7 @@ public class Iniciosesion extends javax.swing.JFrame {
                             .addComponent(Contrasena, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 392, Short.MAX_VALUE))))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 53, Short.MAX_VALUE)
+                .addGap(0, 42, Short.MAX_VALUE)
                 .addComponent(jLabel4)
                 .addGap(28, 28, 28))
             .addGroup(jPanel1Layout.createSequentialGroup()
