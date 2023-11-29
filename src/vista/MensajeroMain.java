@@ -19,6 +19,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelo.GestionServicio;
 import util.RHException;
+import vista.customer.Customer;
 /**
  *
  * @author Santiago
@@ -53,6 +54,15 @@ public class MensajeroMain extends javax.swing.JFrame {
         realizarServiciosPanel = new javax.swing.JScrollPane();
         serviciosContainerPanel = new javax.swing.JPanel();
         container = new javax.swing.JLabel();
+        
+        historialButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                System.out.println("click");
+                //Customer customer = new Customer();
+                //customer.setVisible(true);
+            }
+        });
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(720, 510));

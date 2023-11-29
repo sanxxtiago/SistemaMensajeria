@@ -5,8 +5,8 @@
 package vista;
 
 import javax.swing.JOptionPane;
+import modelo.GestionMensajero;
 import modelo.Mensajero;
-import negocio.GestionMensajero;
 
 /**
  *

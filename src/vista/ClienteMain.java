@@ -4,17 +4,22 @@
  */
 package vista;
 
+import modelo.Cliente;
+import vista.customer.Customer;
+
 /**
  *
  * @author Santiago
  */
 public class ClienteMain extends javax.swing.JFrame {
 
+    private static Cliente clienteClass;
     /**
      * Creates new form RegistroUsuario
      */
-    public ClienteMain() {
+    public ClienteMain(Cliente cliente) {
         initComponents();
+        clienteClass = cliente;
     }
 
     /**
@@ -55,6 +60,11 @@ public class ClienteMain extends javax.swing.JFrame {
         getContentPane().add(solicitudesButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 20, -1, -1));
 
         historialButton.setText("Historial");
+        historialButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                historialButtonMousePressed(evt);
+            }
+        });
         getContentPane().add(historialButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 20, -1, -1));
         getContentPane().add(buscarInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 20, 80, -1));
 
@@ -66,20 +76,29 @@ public class ClienteMain extends javax.swing.JFrame {
         serviciosLabel.setText("Servicios");
         getContentPane().add(serviciosLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(126, 82, -1, -1));
 
-        solicitarServiciosPanel.setLayout(new java.awt.GridLayout());
+        solicitarServiciosPanel.setLayout(new java.awt.GridLayout(1, 0));
         getContentPane().add(solicitarServiciosPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 70, 570, 390));
 
         serviciosContainer.setBackground(new java.awt.Color(204, 204, 204));
         serviciosContainer.setOpaque(true);
         getContentPane().add(serviciosContainer, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 120, 510, 320));
+
         container.setBackground(new java.awt.Color(255, 255, 255));
         container.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/img/panel.png"))); // NOI18N
         container.setMaximumSize(new java.awt.Dimension(464, 412));
         container.setMinimumSize(new java.awt.Dimension(464, 412));
         container.setOpaque(true);
+        getContentPane().add(container, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 720, 510));
+
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void historialButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_historialButtonMousePressed
+        Customer customer = new Customer(clienteClass.getIdCliente());
+        customer.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_historialButtonMousePressed
 
     /**
      * @param args the command line arguments
@@ -114,7 +133,7 @@ public class ClienteMain extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ClienteMain().setVisible(true);
+                new ClienteMain(clienteClass).setVisible(true);
             }
         });
     }

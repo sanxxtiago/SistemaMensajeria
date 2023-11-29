@@ -153,11 +153,11 @@ public class RegistroCliente extends javax.swing.JFrame {
 
             cliente.setNombre(nombresInput.getText());
             cliente.setApellido(apellidosInput.getText());
-            cliente.setTipoId(tipoDocumentoComboBox.getSelectedItem().toString());
+            cliente.setTipoID(tipoDocumentoComboBox.getSelectedItem().toString());
             cliente.setIdCliente(Integer.parseInt(numeroDocInput.getText()));
             cliente.setTelefono(Integer.parseInt(telefonoInput.getText()));
             cliente.setCorreo(correoInput.getText());
-            cliente.setContrasena(contrasenaInput.getText());
+            cliente.setPassword(contrasenaInput.getText());
             GestionClientes gc = new GestionClientes();
             gc.registrarCliente(cliente);
             JOptionPane.showMessageDialog(null, "Se ha registrado el cliente satisfactoriamente.");

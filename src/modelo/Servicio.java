@@ -12,6 +12,7 @@ public class Servicio {
     private String tipoPaquete;
     private String f_solicitud;
     private String estado;
+    private Actividad actividad;
 
     
     public Servicio() {
@@ -115,6 +116,14 @@ public class Servicio {
 
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+
+    public Actividad getActividad() {
+        return actividad;
+    }
+
+    public void setActividad(Actividad actividad) {
+        this.actividad = actividad;
     }
     
 }

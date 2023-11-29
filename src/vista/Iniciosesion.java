@@ -4,7 +4,9 @@
  */
 package vista;
 
-import modelo.Cliente;
+import javax.swing.JOptionPane;
+import modelo.LoginController;
+
 /**
  *
  * @author Felipe Paez
@@ -232,7 +234,22 @@ public class Iniciosesion extends javax.swing.JFrame {
     }//GEN-LAST:event_CorreoActionPerformed
 
     private void BotonIS1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonIS1ActionPerformed
-        // TODO add your handling code here:
+        String email = Correo.getText();
+        String password = new String(Contrasena.getPassword());
+        String[] partes = email.split("@");
+        String dominio = partes[1];
+        LoginController loginController = new LoginController();
+        if (loginController.login(email, password)) {
+            System.out.println(dominio);
+            if ("quickapp.com".equals(dominio)) {
+                MensajeroMain mensajeroMain = new MensajeroMain();
+                mensajeroMain.setVisible(true);
+            }
+
+            this.setVisible(false); // Hide the login form
+        } else {
+            JOptionPane.showMessageDialog(this, "Credenciales inválidas.", "Error de Inicio de Sesión", JOptionPane.ERROR_MESSAGE);
+        }        // TODO add your handling code here:
     }//GEN-LAST:event_BotonIS1ActionPerformed
 
     private void BotonIS2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonIS2ActionPerformed
@@ -245,8 +262,6 @@ public class Iniciosesion extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        
-        
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {

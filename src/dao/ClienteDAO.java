@@ -28,13 +28,13 @@ public class ClienteDAO {
             String strSQL = "INSERT INTO cliente(k_tipoid, k_idcliente, n_nombre, n_apellido, q_telefono, n_correo, n_contrasena) VALUES (?, ?, ?, ?, ?, ?, ?)";
             Connection conexion = ServiceLocator.getInstance().tomarConexion();
             PreparedStatement prepStmt = conexion.prepareStatement(strSQL);
-            prepStmt.setString(1, cliente.getTipoId()); // Check method name in Cliente class
+            prepStmt.setString(1, cliente.getTipoID()); // Check method name in Cliente class
             prepStmt.setLong(2, cliente.getIdCliente()); // Assuming idCliente is a long
             prepStmt.setString(3, cliente.getNombre());
             prepStmt.setString(4, cliente.getApellido());
             prepStmt.setLong(5, cliente.getTelefono()); // Assuming telefono is a long
             prepStmt.setString(6, cliente.getCorreo());
-            prepStmt.setString(7, cliente.getContrasena()); // Check method name in Cliente class
+            prepStmt.setString(7, cliente.getPassword()); // Check method name in Cliente class
             prepStmt.executeUpdate();
             prepStmt.close();
             ServiceLocator.getInstance().commit();
@@ -76,13 +76,13 @@ public class ClienteDAO {
             ResultSet rs = prepStmt.executeQuery();
             if (rs.next()) {
                 Cliente cliente = new Cliente();
-                cliente.setTipoId(rs.getString("k_tipoid"));
-                cliente.setIdCliente(rs.getLong("k_idcliente"));
+                cliente.setTipoID(rs.getString("k_tipoid"));
+                cliente.setIdCliente(rs.getInt("k_idcliente"));
                 cliente.setNombre(rs.getString("n_nombre"));
                 cliente.setApellido(rs.getString("n_apellido"));
-                cliente.setTelefono(rs.getLong("q_telefono"));
+                cliente.setTelefono(rs.getInt("q_telefono"));
                 cliente.setCorreo(rs.getString("n_correo"));
-                cliente.setContrasena(rs.getString("n_contrasena"));
+                cliente.setPassword(rs.getString("n_contrasena"));
                 return cliente;
             }
             rs.close();
@@ -106,7 +106,7 @@ public class ClienteDAO {
                 Cliente cliente = new Cliente();
                 cliente.setNombre(rs.getString("n_nombre"));
                 cliente.setCorreo(rs.getString("n_correo"));
-                cliente.setContrasena(rs.getString("n_contrasena"));
+                cliente.setPassword(rs.getString("n_contrasena"));
                 return cliente;
             }
             rs.close();
@@ -134,13 +134,13 @@ public class ClienteDAO {
 
                 while (rs.next()) {
                     Cliente cliente = new Cliente();
-                    cliente.setTipoId(rs.getString("k_tipoid"));
-                    cliente.setIdCliente(rs.getLong("k_idcliente"));
+                    cliente.setTipoID(rs.getString("k_tipoid"));
+                    cliente.setIdCliente(rs.getInt("k_idcliente"));
                     cliente.setNombre(rs.getString("n_nombre"));
                     cliente.setApellido(rs.getString("n_apellido"));
-                    cliente.setTelefono(rs.getLong("q_telefono"));
+                    cliente.setTelefono(rs.getInt("q_telefono"));
                     cliente.setCorreo(rs.getString("n_correo"));
-                    cliente.setContrasena(rs.getString("n_contrasena"));
+                    cliente.setPassword(rs.getString("n_contrasena"));
                     clientes.add(cliente);
                 }
             } catch (SQLException e) {
