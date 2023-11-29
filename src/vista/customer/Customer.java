@@ -28,7 +28,7 @@ public final class Customer extends javax.swing.JFrame implements Observer {
     public Customer(int clienteId) {
         initComponents();
         clienteIdInstance = clienteId;
-        System.out.println(clienteId);
+        
         servicesList = new ServicesListPanel(clienteId);
         servicesList.subject.agregarObservador(this);
         displayPanel(servicesList);

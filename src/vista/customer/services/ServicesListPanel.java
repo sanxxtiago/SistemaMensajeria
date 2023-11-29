@@ -34,7 +34,6 @@ public class ServicesListPanel extends javax.swing.JPanel {
     public ServicesListPanel(int clienteId) {
         clienteIdInstance = clienteId;
         
-        System.out.println(clienteId);
         initComponents();
         displayServices();
     }
@@ -58,7 +57,6 @@ public class ServicesListPanel extends javax.swing.JPanel {
     public void displayServices() {
         try{
             List<Servicio> services = controlador.consultarServiciosPorIdCliente(clienteIdInstance);
-            //System.out.println(services.get(0).getActividad().getDireccion());
             List<Mensajero> mensajeros = new ArrayList<>();
             
              // Crear la tabla con un modelo de datos
@@ -68,7 +66,7 @@ public class ServicesListPanel extends javax.swing.JPanel {
             for (int i = 0; i < services.size(); i++) {
                 mensajeros.add(controlador.consultarMensajeroPorId(services.get(i).getIdMensajero()));
                 
-                botonFuncion = new JButton("Realizar Función");
+                botonFuncion = new JButton("Detalles");
                 
                 filas[i][0] = services.get(i).getIdServicio();
                 filas[i][1] = getTipoServicio(services.get(i).getTipoPaquete());
