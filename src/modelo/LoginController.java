@@ -1,16 +1,16 @@
-package negocio;
+package modelo;
 
 import util.RHException;
 import javax.swing.JOptionPane;
-
+import modelo.GestionMensajero;
 public class LoginController {
 
     private GestionClientes gestionClientes;
-    private GestionMensajeros gestionMensajeros;
+    private GestionMensajero gestionMensajeros;
 
     public LoginController() {
         gestionClientes = new GestionClientes();
-        gestionMensajeros = new GestionMensajeros();
+        gestionMensajeros = new GestionMensajero();
     }
 
     public boolean login(String email, String password) {
