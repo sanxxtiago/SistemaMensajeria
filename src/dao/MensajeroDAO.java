@@ -14,7 +14,7 @@ public class MensajeroDAO {
 
     }
 
-    public void registroMensajero(Mensajero mensajero) throws RHException {//Clase que maneja el acceso a la tabla clientes de la BD.
+    public boolean registroMensajero(Mensajero mensajero) throws RHException {//Clase que maneja el acceso a la tabla clientes de la BD.
         try {
             String strSQL = "INSERT INTO public.mensajero(k_tipoid, k_idmensajero, n_nombre, n_apellido, q_telefono,"
                     + "f_nacimiento, n_nacionalidad, i_sexo, n_correo, n_contrasena, i_mediotransporte, q_calificacionpromedio)"
@@ -36,6 +36,7 @@ public class MensajeroDAO {
             prepStmt.executeUpdate();
             prepStmt.close();
             ServiceLocator.getInstance().commit();
+            return true;
         } catch (SQLException e) {
             ServiceLocator.getInstance().rollback();
             throw new RHException("MensajeroDAO", "No pudo crear el mensajero -> " + e.getMessage());

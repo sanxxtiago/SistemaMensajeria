@@ -4,12 +4,11 @@
  */
 package vista;
 
-import dao.MensajeroDAO;
-import java.text.SimpleDateFormat;
-import java.sql.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import modelo.Mensajero;
+import negocio.Controlador;
 import util.RHException;
 
 /**
@@ -188,29 +187,34 @@ public class RegistroMensajero extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void crearCuentaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearCuentaButtonActionPerformed
+
+        Mensajero mensajero = new Mensajero();
+
+        mensajero.setTipoId(tipoDocumentoComboBox.getSelectedItem().toString());
+        mensajero.setIdMensajero(Integer.parseInt(numeroDocInput.getText()));
+        mensajero.setNombre(nombresInput.getText());
+        mensajero.setApellido(apellidosInput.getText());
+        mensajero.setTelefono(Integer.parseInt(telefonoInput.getText()));
+        mensajero.setF_nacimiento(fNacimientoInput.getText());
+        mensajero.setNacionalidad(nacionalidadInput.getText());
+        mensajero.setSexo(sexoComboBox.getSelectedItem().toString());
+        mensajero.setCorreo(correoInput.getText());
+        mensajero.setContrasena(contrasenaInput.getText());
+        mensajero.setMedioTransporte(tipoTransporteComboBox.getSelectedItem().toString());
+        mensajero.setCalificacionPromedio(0f);
+
         try {
-            Mensajero mensajero = new Mensajero();
-            
-            mensajero.setTipoId(tipoDocumentoComboBox.getSelectedItem().toString());
-            mensajero.setIdMensajero(Integer.parseInt(numeroDocInput.getText()));  
-            mensajero.setNombre(nombresInput.getText());
-            mensajero.setApellido(apellidosInput.getText());
-            mensajero.setTelefono(Integer.parseInt(telefonoInput.getText()));
-            mensajero.setF_nacimiento(fNacimientoInput.getText());
-            mensajero.setNacionalidad(nacionalidadInput.getText());
-            mensajero.setSexo(sexoComboBox.getSelectedItem().toString());
-            mensajero.setCorreo(correoInput.getText());
-            mensajero.setContrasena(contrasenaInput.getText());
-            mensajero.setMedioTransporte(tipoTransporteComboBox.getSelectedItem().toString());
-            mensajero.setCalificacionPromedio(0f);
-            
-            MensajeroDAO mensajeroDAO = new MensajeroDAO();
-            
-            mensajeroDAO.registroMensajero(mensajero);
+            Controlador controlador = new Controlador();
+            if (controlador.registroMensajero(mensajero)) {
+                JOptionPane.showMessageDialog(null, "Se ha registrado el mensajero satisfactoriamente.");
+            }
         } catch (RHException ex) {
+            JOptionPane.showMessageDialog(null, "ERROR: No se ha registrado el mensajero.");
+
             Logger.getLogger(RegistroMensajero.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
+
     }//GEN-LAST:event_crearCuentaButtonActionPerformed
 
     /**

@@ -23,11 +23,9 @@ public class SistemaMensajeria {
     public static void main(String[] args) {
 
         //Establece la conexión con la bd alojada en la nube
-        Conexion.getSingleton().establecerConexion();
         Connection conexion = ServiceLocator.getInstance().tomarConexion();
         try {
             //Si bota false la conexión está activa
-            System.out.println(Conexion.getSingleton().connection.isClosed());
             System.out.println(conexion.isClosed());
 
         } catch (SQLException ex) {

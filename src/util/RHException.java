@@ -21,4 +21,3 @@ public class RHException extends Exception {
         return "["+clase+"] "+detalle;
       }
  }
-
