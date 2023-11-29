@@ -11,12 +11,14 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import javax.swing.*;
 import modelo.Servicio;
-import negocio.Controlador;
 
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import modelo.GestionServicio;
+import util.RHException;
 /**
  *
  * @author Santiago
@@ -26,10 +28,8 @@ public class MensajeroMain extends javax.swing.JFrame {
     /**
      * Creates new form RegistroUsuario
      */
-    private Controlador controlador;
 
     public MensajeroMain() {
-        controlador = new Controlador();
         initComponents();
     }
 
@@ -107,54 +107,58 @@ public class MensajeroMain extends javax.swing.JFrame {
     }// </editor-fold>                        
 
     private void realizarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_realizarButtonActionPerformed
-        // TODO carga todos los servicios disponibles
-
-        ArrayList<Servicio> serviciosSinAsignar = controlador.getServiciosSinAsignar();
-        //GridLayout gridLayout = new GridLayout(serviciosSinAsignar.size() / 2, 2);
-        GridLayout gridLayout = new GridLayout(0, 2);
-
-        gridLayout.setHgap(50);
-        gridLayout.setVgap(80);
-        serviciosContainerPanel.setLayout(gridLayout);
-        for (Servicio servicio : serviciosSinAsignar) {
-            if (servicio.getEstado().equals("SOLICITADO")) {
-                System.out.println(servicio.getIdServicio());
-                JPanel comp = new JPanel();
-                comp.setLayout(new BorderLayout());
-                comp.setBackground(Color.WHITE);
-                comp.setPreferredSize(new Dimension(150, 150));
-                JLabel nombreServicio = new JLabel(servicio.getTipoPaquete());
-                JLabel imgServicio = new JLabel();
-                ImageIcon servicioImagen = new ImageIcon(getClass().getResource("Im1.png"));
-                Image scaledImage = servicioImagen.getImage().getScaledInstance(230, 80, Image.SCALE_SMOOTH);
-                servicioImagen = new ImageIcon(scaledImage);
-                imgServicio.setIcon(servicioImagen);
-                JButton aceptarServicio = new JButton("Aceptar servicio");
-                aceptarServicio.setName(String.valueOf(servicio.getIdServicio()));
-                aceptarServicio.addActionListener(new ActionListener() {
-                
-                    @Override
-                    public void actionPerformed(ActionEvent e){
-                        System.out.println(aceptarServicio.getName());
-                        int aceptar = JOptionPane.showConfirmDialog(null, "Seguro que quiere aceptar este servicio?", "Aceptar servicio", JOptionPane.YES_NO_OPTION);
-                        if(aceptar == 0){
-                            //Aceptar servicio
-                            System.out.println("Se ha aceptado el servicio");
-                            System.out.println("Se actualiza la base de datos");
+        try {
+            // TODO carga todos los servicios disponibles
+            GestionServicio gs = new GestionServicio();
+            ArrayList<Servicio> serviciosSinAsignar = gs.consultarServicioSinAsignar();
+            //GridLayout gridLayout = new GridLayout(serviciosSinAsignar.size() / 2, 2);
+            GridLayout gridLayout = new GridLayout(0, 2);
+            
+            gridLayout.setHgap(50);
+            gridLayout.setVgap(80);
+            serviciosContainerPanel.setLayout(gridLayout);
+            for (Servicio servicio : serviciosSinAsignar) {
+                if (servicio.getEstado().equals("SOLICITADO")) {
+                    System.out.println(servicio.getIdServicio());
+                    JPanel comp = new JPanel();
+                    comp.setLayout(new BorderLayout());
+                    comp.setBackground(Color.WHITE);
+                    comp.setPreferredSize(new Dimension(150, 150));
+                    JLabel nombreServicio = new JLabel(servicio.getTipoPaquete());
+                    JLabel imgServicio = new JLabel();
+                    ImageIcon servicioImagen = new ImageIcon(getClass().getResource("Im1.png"));
+                    Image scaledImage = servicioImagen.getImage().getScaledInstance(230, 80, Image.SCALE_SMOOTH);
+                    servicioImagen = new ImageIcon(scaledImage);
+                    imgServicio.setIcon(servicioImagen);
+                    JButton aceptarServicio = new JButton("Aceptar servicio");
+                    aceptarServicio.setName(String.valueOf(servicio.getIdServicio()));
+                    aceptarServicio.addActionListener(new ActionListener() {
+                        
+                        @Override
+                        public void actionPerformed(ActionEvent e){
+                            System.out.println(aceptarServicio.getName());
+                            int aceptar = JOptionPane.showConfirmDialog(null, "Seguro que quiere aceptar este servicio?", "Aceptar servicio", JOptionPane.YES_NO_OPTION);
+                            if(aceptar == 0){
+                                //Aceptar servicio
+                                System.out.println("Se ha aceptado el servicio");
+                                System.out.println("Se actualiza la base de datos");
+                            }
                         }
-                    }
-                });
-                comp.add(imgServicio, BorderLayout.NORTH);
-                comp.add(nombreServicio, BorderLayout.CENTER);
-                comp.add(aceptarServicio, BorderLayout.SOUTH);
-                //comp.setBounds(50, 50, 100, 70);
-                serviciosContainerPanel.add(comp);
-
+                    });
+                    comp.add(imgServicio, BorderLayout.NORTH);
+                    comp.add(nombreServicio, BorderLayout.CENTER);
+                    comp.add(aceptarServicio, BorderLayout.SOUTH);
+                    //comp.setBounds(50, 50, 100, 70);
+                    serviciosContainerPanel.add(comp);
+                    
+                }
+                
             }
-
+            serviciosContainerPanel.revalidate();
+            serviciosContainerPanel.repaint();
+        } catch (RHException ex) {
+            Logger.getLogger(MensajeroMain.class.getName()).log(Level.SEVERE, null, ex);
         }
-        serviciosContainerPanel.revalidate();
-        serviciosContainerPanel.repaint();
     }//GEN-LAST:event_realizarButtonActionPerformed
 
     /**

@@ -4,12 +4,9 @@
  */
 package vista;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import modelo.Mensajero;
-import negocio.Controlador;
-import util.RHException;
+import negocio.GestionMensajero;
 
 /**
  *
@@ -208,16 +205,8 @@ public class RegistroMensajero extends javax.swing.JFrame {
         mensajero.setMedioTransporte(tipoTransporteComboBox.getSelectedItem().toString());
         mensajero.setCalificacionPromedio(0f);
 
-        try {
-            Controlador controlador = new Controlador();
-            if (controlador.registroMensajero(mensajero)) {
-                JOptionPane.showMessageDialog(null, "Se ha registrado el mensajero satisfactoriamente.");
-            }
-        } catch (RHException ex) {
-            JOptionPane.showMessageDialog(null, "ERROR: No se ha registrado el mensajero.");
-
-            Logger.getLogger(RegistroMensajero.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        GestionMensajero gm = new GestionMensajero();
+        JOptionPane.showMessageDialog(null, "Se ha registrado el mensajero satisfactoriamente.");
 
 
     }//GEN-LAST:event_crearCuentaButtonActionPerformed

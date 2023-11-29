@@ -8,7 +8,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import modelo.Cliente;
-import negocio.Controlador;
+import modelo.GestionClientes;
 import util.RHException;
 
 /**
@@ -153,15 +153,15 @@ public class RegistroCliente extends javax.swing.JFrame {
 
             cliente.setNombre(nombresInput.getText());
             cliente.setApellido(apellidosInput.getText());
-            cliente.setTipoID(tipoDocumentoComboBox.getSelectedItem().toString());
+            cliente.setTipoId(tipoDocumentoComboBox.getSelectedItem().toString());
             cliente.setIdCliente(Integer.parseInt(numeroDocInput.getText()));
             cliente.setTelefono(Integer.parseInt(telefonoInput.getText()));
             cliente.setCorreo(correoInput.getText());
-            cliente.setPassword(contrasenaInput.getText());
-            Controlador controlador = new Controlador();
-            if (controlador.registroCliente(cliente)) {
-                JOptionPane.showMessageDialog(null, "Se ha registrado el cliente satisfactoriamente.");
-            }
+            cliente.setContrasena(contrasenaInput.getText());
+            GestionClientes gc = new GestionClientes();
+            gc.registrarCliente(cliente);
+            JOptionPane.showMessageDialog(null, "Se ha registrado el cliente satisfactoriamente.");
+
         } catch (RHException ex) {
             JOptionPane.showMessageDialog(null, "ERROR: No se ha registrado el cliente.");
             Logger.getLogger(RegistroCliente.class.getName()).log(Level.SEVERE, null, ex);
